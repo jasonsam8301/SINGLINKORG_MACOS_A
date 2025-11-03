@@ -728,6 +728,37 @@ export const commands = {
       else return { status: 'error', error: e as any }
     }
   },
+  /**
+   * 切换 VPN 扩展开关
+   */
+  async vpnExtensionToggle(enable: boolean): Promise<Result<null, string>> {
+    try {
+      return {
+        status: 'ok',
+        data: await TAURI_INVOKE('vpn_extension_toggle', { enable }),
+      }
+    } catch (e) {
+      if (e instanceof Error) throw e
+      else return { status: 'error', error: e as any }
+    }
+  },
+  /**
+   * 获取 VPN 扩展状态
+   */
+  async vpnExtensionStatus(): Promise<VpnExtensionStatus> {
+    return await TAURI_INVOKE('vpn_extension_status')
+  },
+  /**
+   * 刷新 VPN 配置（当 Clash 节点变化时调用）
+   */
+  async vpnExtensionRefresh(): Promise<Result<null, string>> {
+    try {
+      return { status: 'ok', data: await TAURI_INVOKE('vpn_extension_refresh') }
+    } catch (e) {
+      if (e instanceof Error) throw e
+      else return { status: 'error', error: e as any }
+    }
+  },
 }
 
 /** user-defined events **/
@@ -1525,6 +1556,31 @@ export type UpdaterSummary = {
   id: number
   state: UpdaterState
   downloader: DownloadStatus
+}
+/**
+ * VPN 扩展状态信息
+ */
+export type VpnExtensionStatus = {
+  /**
+   * 是否支持 VPN 扩展（仅 macOS）
+   */
+  supported: boolean
+  /**
+   * 是否已安装配置
+   */
+  installed: boolean
+  /**
+   * 连接状态
+   */
+  status: string
+  /**
+   * 当前节点名称
+   */
+  node_name: string | null
+  /**
+   * Clash SOCKS5 端口
+   */
+  clash_port: number | null
 }
 export type WindowState = {
   width: number

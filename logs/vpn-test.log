@@ -1,0 +1,113 @@
+📝 开始运行测试 - Tue Nov  4 04:22:53 HKT 2025
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+  [1m[94m--> [0mtauri/src/window.rs:68:9
+   [1m[94m|[0m
+[1m[94m68[0m [1m[94m|[0m         unsafe {
+   [1m[94m|[0m         [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+  [1m[94m--> [0mtauri/src/window.rs:78:13
+   [1m[94m|[0m
+[1m[94m78[0m [1m[94m|[0m             unsafe {
+   [1m[94m|[0m             [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:138:17
+    [1m[94m|[0m
+[1m[94m138[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowShouldClose(sender) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:144:17
+    [1m[94m|[0m
+[1m[94m144[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowWillClose(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:151:17
+    [1m[94m|[0m
+[1m[94m151[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidResize(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:157:17
+    [1m[94m|[0m
+[1m[94m157[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidMove(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:164:17
+    [1m[94m|[0m
+[1m[94m164[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidChangeBackingProperties(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:170:17
+    [1m[94m|[0m
+[1m[94m170[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidBecomeKey(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:176:17
+    [1m[94m|[0m
+[1m[94m176[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidResignKey(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:182:17
+    [1m[94m|[0m
+[1m[94m182[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.window_willUseFullScreenPresentationOptions(window, options) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:191:17
+    [1m[94m|[0m
+[1m[94m191[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidEnterFullScreen(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:199:17
+    [1m[94m|[0m
+[1m[94m199[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowWillEnterFullScreen(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:208:17
+    [1m[94m|[0m
+[1m[94m208[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowWillExitFullScreen(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:218:17
+    [1m[94m|[0m
+[1m[94m218[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidExitFullScreen(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:224:17
+    [1m[94m|[0m
+[1m[94m224[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidFailToEnterFullScreen(window) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:234:39
+    [1m[94m|[0m
+[1m[94m234[0m [1m[94m|[0m                 .with_ns_window(|win| unsafe { win.delegate().expect("failed to get delegate") });
+    [1m[94m|[0m                                       [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1mSome errors have detailed explanations: E0282, E0432, E0599.[0m
+[1mFor more information about an error, try `rustc --explain E0282`.[0m
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m: `clash-nyanpasu` (lib) generated 34 warnings
+[1m[91merror[0m: could not compile `clash-nyanpasu` (lib) due to 5 previous errors; 34 warnings emitted
+✅ VPN Helper 已复制到正确位置
+   [1m[94m= [0m[1mnote[0m: this warning originates in the macro `draft_define` (in Nightly builds, run with -Z macro-backtrace for more info)
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: hiding a lifetime that's elided elsewhere is confusing[0m
+   [1m[94m= [0m[1mnote[0m: this warning originates in the macro `draft_define` (in Nightly builds, run with -Z macro-backtrace for more info)
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: hiding a lifetime that's elided elsewhere is confusing[0m
+   [1m[94m= [0m[1mnote[0m: this warning originates in the macro `draft_define` (in Nightly builds, run with -Z macro-backtrace for more info)
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: hiding a lifetime that's elided elsewhere is confusing[0m
+   [1m[94m= [0m[1mnote[0m: this warning originates in the macro `draft_define` (in Nightly builds, run with -Z macro-backtrace for more info)
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: hiding a lifetime that's elided elsewhere is confusing[0m
+   [1m[94m= [0m[1mnote[0m: this warning originates in the macro `draft_define` (in Nightly builds, run with -Z macro-backtrace for more info)
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: hiding a lifetime that's elided elsewhere is confusing[0m
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m: `clash-nyanpasu` (lib) generated 107 warnings (run `cargo fix --lib -p clash-nyanpasu` to apply 23 suggestions)

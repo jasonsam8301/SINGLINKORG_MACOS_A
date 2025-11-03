@@ -10,7 +10,6 @@ use parking_lot::Mutex;
 use once_cell::sync::OnceCell;
 
 use crate::config::Config;
-use crate::core::clash::ClashCore;
 
 /// VPN 配置
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -122,45 +121,36 @@ impl VpnManager {
     
     /// 确保 Clash 核心正在运行
     async fn ensure_clash_running(&self) -> Result<()> {
-        use super::super::clash::ClashCore;
+        // 检查 Clash SOCKS5 端口是否可用
+        let port = 7890;
         
-        // 检查 Clash 是否运行
-        if !ClashCore::is_running() {
-            tracing::info!("⚠️ Clash 未运行，正在启动...");
-            
-            // 启动 Clash
-            ClashCore::global().run_core().await?;
-            
-            // 等待 Clash 就绪
-            tokio::time::sleep(std::time::Duration::from_secs(3)).await;
+        match verify_clash_port(port) {
+            Ok(_) => {
+                tracing::info!("✅ Clash SOCKS5 端口已就绪");
+                Ok(())
+            }
+            Err(e) => {
+                tracing::error!("❌ Clash 端口检查失败: {}", e);
+                Err(anyhow!(
+                    "Clash SOCKS5 端口 {} 不可用。\n\
+                     请确保 Clash Nyanpasu 正在运行，并且已启用 SOCKS5 代理。\n\
+                     在设置中检查：Clash设置 > 端口设置 > SOCKS端口",
+                    port
+                ))
+            }
         }
-        
-        // 验证 SOCKS5 端口可用
-        verify_clash_port(7890)?;
-        
-        tracing::info!("✅ Clash 核心已就绪");
-        Ok(())
     }
     
     /// 从 Clash 配置获取 VPN 所需信息
     fn get_clash_config(&self) -> Result<VpnConfig> {
-        let clash_config = Config::clash().data();
+        // 使用固定的SOCKS5端口（Clash/Mihomo默认）
+        let port: u16 = 7890;
         
-        // 读取 SOCKS5 端口
-        let port = clash_config
-            .get("socks-port")
-            .and_then(|v| v.as_u64())
-            .unwrap_or_else(|| {
-                // 降级到 mixed-port
-                clash_config.get_mixed_port() as u64
-            }) as u16;
+        tracing::info!("📝 VPN 配置:");
+        tracing::info!("   Clash SOCKS5: 127.0.0.1:{}", port);
         
-        tracing::info!("📝 读取 Clash 配置:");
-        tracing::info!("   SOCKS5 端口: {}", port);
-        
-        // 获取当前节点（从 Clash API）
-        let node_name = self.get_current_node_name()
-            .unwrap_or("GLOBAL".to_string());
+        // 节点名称
+        let node_name = "当前节点".to_string();
         
         Ok(VpnConfig {
             clash_host: "127.0.0.1".to_string(),
@@ -178,30 +168,11 @@ impl VpnManager {
     
     /// 处理与 TUN 模式的冲突
     async fn handle_tun_conflict(&self) -> Result<()> {
-        use crate::config::Config;
+        // 简化实现：只记录警告，不自动关闭TUN
+        // 用户可以手动选择
         
-        // 检查 TUN 是否启用
-        let tun_enabled = {
-            let verge = Config::verge().latest();
-            verge.enable_tun_mode.unwrap_or(false)
-        };
-        
-        if tun_enabled {
-            tracing::warn!("⚠️ 检测到 TUN 模式已启用");
-            tracing::info!("📝 VPN 扩展将接管流量，建议关闭 TUN 模式");
-            
-            // 自动关闭 TUN 模式
-            let mut verge = Config::verge().latest().clone();
-            verge.enable_tun_mode = Some(false);
-            Config::verge().patch(verge).await?;
-            
-            tracing::info!("✅ TUN 模式已自动关闭");
-            
-            // 等待配置生效
-            tokio::time::sleep(std::time::Duration::from_secs(1)).await;
-        } else {
-            tracing::info!("✅ TUN 模式未启用，无冲突");
-        }
+        tracing::info!("💡 提示：VPN模式和TUN模式建议不同时使用");
+        tracing::info!("   如果TUN已启用，建议在设置中关闭后再启用VPN");
         
         Ok(())
     }

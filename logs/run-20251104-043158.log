@@ -1,0 +1,987 @@
+
+> @nyanpasu/monorepo@2.0.0 tauri:dev /Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main
+> tauri dev -c ./backend/tauri/tauri.conf.json
+
+     Running BeforeDevCommand (`pnpm run web:dev`)
+     Running DevCommand (`cargo  run --no-default-features --features default-meta --color always --`)
+        Info Watching /Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main/backend/tauri for changes...
+        Info Watching /Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main/backend/tauri for changes...
+        Info Watching /Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main/backend/boa_utils for changes...
+        Info Watching /Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main/backend/nyanpasu-macro for changes...
+        Info Watching /Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main/backend/nyanpasu-egui for changes...
+
+> @nyanpasu/monorepo@2.0.0 web:dev /Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main
+> pnpm --filter=@nyanpasu/nyanpasu dev
+
+
+> @nyanpasu/nyanpasu@2.0.0-alpha+10a82d25 dev /Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main/frontend/nyanpasu
+> vite
+
+[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+  [1m[94m--> [0mnyanpasu-egui/src/widget/mod.rs:33:5
+   [1m[94m|[0m
+[1m[94m33[0m [1m[94m|[0m     unsafe {
+   [1m[94m|[0m     [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mnote[0m: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+[1m[33mwarning[0m[1m: function `get_window_state_path` is never used[0m
+ [1m[94m--> [0mnyanpasu-egui/src/widget/mod.rs:9:4
+  [1m[94m|[0m
+[1m[94m9[0m [1m[94m|[0m fn get_window_state_path() -> std::io::Result<PathBuf> {
+  [1m[94m|[0m    [1m[33m^^^^^^^^^^^^^^^^^^^^^[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1mnote[0m: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+[1m[33mwarning[0m: `nyanpasu-egui` (lib) generated 2 warnings
+[1m[33mwarning[0m[1m: use of deprecated macro `msg_send_id`: use a normal msg_send! instead, it will now perform the conversion to/from `Retained` for you[0m
+  [1m[94m--> [0mtauri-plugin-deep-link/src/macos.rs:79:18
+   [1m[94m|[0m
+[1m[94m79[0m [1m[94m|[0m         unsafe { msg_send_id![msg_send_id![cls, alloc], init] }
+   [1m[94m|[0m                  [1m[33m^^^^^^^^^^^[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mnote[0m: `#[warn(deprecated)]` on by default
+
+[1m[33mwarning[0m[1m: use of deprecated macro `msg_send_id`: use a normal msg_send! instead, it will now perform the conversion to/from `Retained` for you[0m
+  [1m[94m--> [0mtauri-plugin-deep-link/src/macos.rs:79:31
+   [1m[94m|[0m
+[1m[94m79[0m [1m[94m|[0m         unsafe { msg_send_id![msg_send_id![cls, alloc], init] }
+   [1m[94m|[0m                               [1m[33m^^^^^^^^^^^[0m
+
+[1m[33mwarning[0m[1m: use of deprecated macro `msg_send_id`: use a normal msg_send! instead, it will now perform the conversion to/from `Retained` for you[0m
+   [1m[94m--> [0mtauri-plugin-deep-link/src/macos.rs:138:13
+    [1m[94m|[0m
+[1m[94m138[0m [1m[94m|[0m             msg_send_id![class!(NSAppleEventManager), sharedAppleEventManager];
+    [1m[94m|[0m             [1m[33m^^^^^^^^^^^[0m
+
+[1m[33mwarning[0m[1m: use of deprecated macro `objc2::msg_send_id`: use a normal msg_send! instead, it will now perform the conversion to/from `Retained` for you[0m
+ [1m[94m--> [0mtauri-plugin-deep-link/src/macos.rs:9:36
+  [1m[94m|[0m
+[1m[94m9[0m [1m[94m|[0m     class, define_class, msg_send, msg_send_id,
+  [1m[94m|[0m                                    [1m[33m^^^^^^^^^^^[0m
+
+[1m[33mwarning[0m[1m: use of deprecated function `platform_impl::listen::__missing_comma`: using msg_send! without a comma between arguments is technically not valid macro syntax, and may break in a future version of Rust. You should use the following instead:[0m
+[1m         msg_send![&event_manager, setEventHandler: &**handler_boxed, andSelector: sel!(handleEvent:withReplyEvent:), forEventClass: EVENT_CLASS, andEventID: EVENT_GET_URL][0m
+   [1m[94m--> [0mtauri-plugin-deep-link/src/macos.rs:143:21
+    [1m[94m|[0m
+[1m[94m143[0m [1m[94m|[0m           let _: () = msg_send![&event_manager,
+    [1m[94m|[0m [1m[33m _____________________^[0m
+[1m[94m144[0m [1m[94m|[0m [1m[33m|[0m             setEventHandler: &**handler_boxed
+[1m[94m145[0m [1m[94m|[0m [1m[33m|[0m             andSelector: sel!(handleEvent:withReplyEvent:)
+[1m[94m146[0m [1m[94m|[0m [1m[33m|[0m             forEventClass:EVENT_CLASS
+[1m[94m147[0m [1m[94m|[0m [1m[33m|[0m             andEventID:EVENT_GET_URL];
+    [1m[94m|[0m [1m[33m|_____________________________________^[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mnote[0m: this warning originates in the macro `$crate::__missing_comma_between_args_inner` which comes from the expansion of the macro `msg_send` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+[1m[33mwarning[0m: `tauri-plugin-deep-link` (lib) generated 5 warnings
+[1m[92m   Compiling[0m clash-nyanpasu v0.1.0 (/Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main/backend/tauri)
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              Port 3000 is in use, trying another one...
+
+  VITE v7.1.12  ready in 1394 ms
+
+  ➜  Local:   http://localhost:3001/
+  ➜  Network: use --host to expose
+[K[1m[33mwarning[0m[1m: unused import: `runas::Command as RunasCommand`[0m
+ [1m[94m--> [0mtauri/src/core/service/control.rs:2:5
+  [1m[94m|[0m
+[1m[94m2[0m [1m[94m|[0m use runas::Command as RunasCommand;
+  [1m[94m|[0m     [1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1mnote[0m: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `persistent::*`[0m
+ [1m[94m--> [0mtauri/src/core/state_v2/manager.rs:6:9
+  [1m[94m|[0m
+[1m[94m6[0m [1m[94m|[0m pub use persistent::*;
+  [1m[94m|[0m         [1m[33m^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `simple::*`[0m
+ [1m[94m--> [0mtauri/src/core/state_v2/manager.rs:7:9
+  [1m[94m|[0m
+[1m[94m7[0m [1m[94m|[0m pub use simple::*;
+  [1m[94m|[0m         [1m[33m^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `coordinator::*`[0m
+ [1m[94m--> [0mtauri/src/core/state_v2/mod.rs:5:9
+  [1m[94m|[0m
+[1m[94m5[0m [1m[94m|[0m pub use coordinator::*;
+  [1m[94m|[0m         [1m[33m^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `std::process::Command`[0m
+ [1m[94m--> [0mtauri/src/core/vpn/manager.rs:7:5
+  [1m[94m|[0m
+[1m[94m7[0m [1m[94m|[0m use std::process::Command;
+  [1m[94m|[0m     [1m[33m^^^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `crate::config::Config`[0m
+  [1m[94m--> [0mtauri/src/core/vpn/manager.rs:12:5
+   [1m[94m|[0m
+[1m[94m12[0m [1m[94m|[0m use crate::config::Config;
+   [1m[94m|[0m     [1m[33m^^^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `manager::VpnManager`[0m
+  [1m[94m--> [0mtauri/src/core/vpn/mod.rs:12:9
+   [1m[94m|[0m
+[1m[94m12[0m [1m[94m|[0m pub use manager::VpnManager;
+   [1m[94m|[0m         [1m[33m^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `anyhow::Context`[0m
+ [1m[94m--> [0mtauri/src/setup.rs:2:5
+  [1m[94m|[0m
+[1m[94m2[0m [1m[94m|[0m use anyhow::Context;
+  [1m[94m|[0m     [1m[33m^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused imports: `Listener`, `Manager`, `Runtime`, and `Window`[0m
+  [1m[94m--> [0mtauri/src/window.rs:15:26
+   [1m[94m|[0m
+[1m[94m15[0m [1m[94m|[0m     use tauri::{Emitter, Listener, Manager, Runtime, WebviewWindow, Window, WindowEvent};
+   [1m[94m|[0m                          [1m[33m^^^^^^^^[0m  [1m[33m^^^^^^^[0m  [1m[33m^^^^^^^[0m                 [1m[33m^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: use of deprecated field `config::nyanpasu::IVerge::auto_close_connection`: use `break_when_proxy_change` instead[0m
+   [1m[94m--> [0mtauri/src/config/nyanpasu/mod.rs:356:12
+    [1m[94m|[0m
+[1m[94m356[0m [1m[94m|[0m         if config.auto_close_connection.is_some() && config.break_when_proxy_change.is_none() {
+    [1m[94m|[0m            [1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mnote[0m: `#[warn(deprecated)]` on by default
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: use of deprecated field `config::nyanpasu::IVerge::auto_close_connection`: use `break_when_proxy_change` instead[0m
+   [1m[94m--> [0mtauri/src/config/nyanpasu/mod.rs:357:49
+    [1m[94m|[0m
+[1m[94m357[0m [1m[94m|[0m             config.break_when_proxy_change = if config.auto_close_connection.unwrap() {
+    [1m[94m|[0m                                                 [1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `Manager`[0m
+  [1m[94m--> [0mtauri/src/lib.rs:35:22
+   [1m[94m|[0m
+[1m[94m35[0m [1m[94m|[0m use tauri::{Emitter, Manager};
+   [1m[94m|[0m                      [1m[33m^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused variable: `type_map`[0m
+  [1m[94m--> [0mtauri/src/ipc.rs:65:9
+   [1m[94m|[0m
+[1m[94m65[0m [1m[94m|[0m         type_map: &mut specta::TypeMap,
+   [1m[94m|[0m         [1m[33m^^^^^^^^[0m [1m[33mhelp: if this is intentional, prefix it with an underscore: `_type_map`[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mnote[0m: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused variable: `generics`[0m
+  [1m[94m--> [0mtauri/src/ipc.rs:66:9
+   [1m[94m|[0m
+[1m[94m66[0m [1m[94m|[0m         generics: specta::Generics,
+   [1m[94m|[0m         [1m[33m^^^^^^^^[0m [1m[33mhelp: if this is intentional, prefix it with an underscore: `_generics`[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused variable: `app_handle`[0m
+ [1m[94m--> [0mtauri/src/setup.rs:5:9
+  [1m[94m|[0m
+[1m[94m5[0m [1m[94m|[0m     let app_handle = app.app_handle().clone();
+  [1m[94m|[0m         [1m[33m^^^^^^^^^^[0m [1m[33mhelp: if this is intentional, prefix it with an underscore: `_app_handle`[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused variable: `shell`[0m
+   [1m[94m--> [0mtauri/src/utils/help.rs:114:9
+    [1m[94m|[0m
+[1m[94m114[0m [1m[94m|[0m     let shell = app.shell();
+    [1m[94m|[0m         [1m[33m^^^^^[0m [1m[33mhelp: if this is intentional, prefix it with an underscore: `_shell`[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+  [1m[94m--> [0mtauri/src/utils/resolve.rs:61:5
+   [1m[94m|[0m
+[1m[94m61[0m [1m[94m|[0m     unsafe {
+   [1m[94m|[0m     [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mnote[0m: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+  [1m[94m--> [0mtauri/src/utils/resolve.rs:71:9
+   [1m[94m|[0m
+[1m[94m71[0m [1m[94m|[0m         unsafe {
+   [1m[94m|[0m         [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+  [1m[94m--> [0mtauri/src/utils/dock.rs:13:9
+   [1m[94m|[0m
+[1m[94m13[0m [1m[94m|[0m         unsafe {
+   [1m[94m|[0m         [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+  [1m[94m--> [0mtauri/src/window.rs:68:9
+   [1m[94m|[0m
+[1m[94m68[0m [1m[94m|[0m         unsafe {
+   [1m[94m|[0m         [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+  [1m[94m--> [0mtauri/src/window.rs:78:13
+   [1m[94m|[0m
+[1m[94m78[0m [1m[94m|[0m             unsafe {
+   [1m[94m|[0m             [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:138:17
+    [1m[94m|[0m
+[1m[94m138[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowShouldClose(sender) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:144:17
+    [1m[94m|[0m
+[1m[94m144[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowWillClose(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:151:17
+    [1m[94m|[0m
+[1m[94m151[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidResize(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:157:17
+    [1m[94m|[0m
+[1m[94m157[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidMove(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:164:17
+    [1m[94m|[0m
+[1m[94m164[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidChangeBackingProperties(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:170:17
+    [1m[94m|[0m
+[1m[94m170[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidBecomeKey(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:176:17
+    [1m[94m|[0m
+[1m[94m176[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidResignKey(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:182:17
+    [1m[94m|[0m
+[1m[94m182[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.window_willUseFullScreenPresentationOptions(window, options) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:191:17
+    [1m[94m|[0m
+[1m[94m191[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidEnterFullScreen(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:199:17
+    [1m[94m|[0m
+[1m[94m199[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowWillEnterFullScreen(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:208:17
+    [1m[94m|[0m
+[1m[94m208[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowWillExitFullScreen(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:218:17
+    [1m[94m|[0m
+[1m[94m218[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidExitFullScreen(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:224:17
+    [1m[94m|[0m
+[1m[94m224[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidFailToEnterFullScreen(window) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:234:39
+    [1m[94m|[0m
+[1m[94m234[0m [1m[94m|[0m                 .with_ns_window(|win| unsafe { win.delegate().expect("failed to get delegate") });
+    [1m[94m|[0m                                       [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `IClash` is never constructed[0m
+   [1m[94m--> [0mtauri/src/config/clash/mod.rs:269:12
+    [1m[94m|[0m
+[1m[94m269[0m [1m[94m|[0m pub struct IClash {
+    [1m[94m|[0m            [1m[33m^^^^^^[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mnote[0m: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `IClashTUN` is never constructed[0m
+   [1m[94m--> [0mtauri/src/config/clash/mod.rs:284:12
+    [1m[94m|[0m
+[1m[94m284[0m [1m[94m|[0m pub struct IClashTUN {
+    [1m[94m|[0m            [1m[33m^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `IClashDNS` is never constructed[0m
+   [1m[94m--> [0mtauri/src/config/clash/mod.rs:294:12
+    [1m[94m|[0m
+[1m[94m294[0m [1m[94m|[0m pub struct IClashDNS {
+    [1m[94m|[0m            [1m[33m^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `IClashFallbackFilter` is never constructed[0m
+   [1m[94m--> [0mtauri/src/config/clash/mod.rs:310:12
+    [1m[94m|[0m
+[1m[94m310[0m [1m[94m|[0m pub struct IClashFallbackFilter {
+    [1m[94m|[0m            [1m[33m^^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: enum `ProfileBuilderError` is never used[0m
+  [1m[94m--> [0mtauri/src/config/profile/builder.rs:17:10
+   [1m[94m|[0m
+[1m[94m17[0m [1m[94m|[0m pub enum ProfileBuilderError {
+   [1m[94m|[0m          [1m[33m^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: method `build` is never used[0m
+  [1m[94m--> [0mtauri/src/config/profile/builder.rs:29:12
+   [1m[94m|[0m
+[1m[94m28[0m [1m[94m|[0m impl ProfileBuilder {
+   [1m[94m|[0m [1m[94m-------------------[0m [1m[94mmethod in this implementation[0m
+[1m[94m29[0m [1m[94m|[0m     pub fn build(self) -> Result<Profile, ProfileBuilderError> {
+   [1m[94m|[0m            [1m[33m^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: function `parse_check_output` is never used[0m
+   [1m[94m--> [0mtauri/src/core/clash/api.rs:434:8
+    [1m[94m|[0m
+[1m[94m434[0m [1m[94m|[0m pub fn parse_check_output(log: String) -> String {
+    [1m[94m|[0m        [1m[33m^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `ConnectionInfo` is never constructed[0m
+ [1m[94m--> [0mtauri/src/core/connection_interruption.rs:7:12
+  [1m[94m|[0m
+[1m[94m7[0m [1m[94m|[0m pub struct ConnectionInfo {
+  [1m[94m|[0m            [1m[33m^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: associated functions `interrupt_all` and `interrupt_by_chain` are never used[0m
+  [1m[94m--> [0mtauri/src/core/connection_interruption.rs:65:18
+   [1m[94m|[0m
+[1m[94m15[0m [1m[94m|[0m impl ConnectionInterruptionService {
+   [1m[94m|[0m [1m[94m----------------------------------[0m [1m[94massociated functions in this implementation[0m
+[1m[94m...[0m
+[1m[94m65[0m [1m[94m|[0m     pub async fn interrupt_all() -> Result<()> {
+   [1m[94m|[0m                  [1m[33m^^^^^^^^^^^^^[0m
+[1m[94m...[0m
+[1m[94m70[0m [1m[94m|[0m     pub async fn interrupt_by_chain(_chain: &[String]) -> Result<()> {
+   [1m[94m|[0m                  [1m[33m^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: method `name` is never used[0m
+  [1m[94m--> [0mtauri/src/core/tasks/jobs/mod.rs:14:8
+   [1m[94m|[0m
+[1m[94m13[0m [1m[94m|[0m pub trait JobExt {
+   [1m[94m|[0m           [1m[94m------[0m [1m[94mmethod in this trait[0m
+[1m[94m14[0m [1m[94m|[0m     fn name(&self) -> &'static str;
+   [1m[94m|[0m        [1m[33m^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: constant `CLEAR_LOG_TASK_NAME` is never used[0m
+  [1m[94m--> [0mtauri/src/core/tasks/jobs/logger.rs:19:7
+   [1m[94m|[0m
+[1m[94m19[0m [1m[94m|[0m const CLEAR_LOG_TASK_NAME: &str = "clear_logs";
+   [1m[94m|[0m       [1m[33m^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `ClearLogsJob` is never constructed[0m
+  [1m[94m--> [0mtauri/src/core/tasks/jobs/logger.rs:22:12
+   [1m[94m|[0m
+[1m[94m22[0m [1m[94m|[0m pub struct ClearLogsJob;
+   [1m[94m|[0m            [1m[33m^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: function `clear_logs` is never used[0m
+  [1m[94m--> [0mtauri/src/core/tasks/jobs/logger.rs:25:8
+   [1m[94m|[0m
+[1m[94m25[0m [1m[94m|[0m pub fn clear_logs() -> Result<()> {
+   [1m[94m|[0m        [1m[33m^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: method `get_instance` is never used[0m
+   [1m[94m--> [0mtauri/src/core/tasks/storage.rs:181:8
+    [1m[94m|[0m
+ [1m[94m21[0m [1m[94m|[0m impl TaskStorage {
+    [1m[94m|[0m [1m[94m----------------[0m [1m[94mmethod in this implementation[0m
+[1m[94m...[0m
+[1m[94m181[0m [1m[94m|[0m     fn get_instance(&self) -> &redb::Database {
+    [1m[94m|[0m        [1m[33m^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: trait `TaskGuard` is never used[0m
+   [1m[94m--> [0mtauri/src/core/tasks/storage.rs:187:11
+    [1m[94m|[0m
+[1m[94m187[0m [1m[94m|[0m pub trait TaskGuard {
+    [1m[94m|[0m           [1m[33m^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: methods `restore_tasks` and `list` are never used[0m
+   [1m[94m--> [0mtauri/src/core/tasks/task.rs:286:12
+    [1m[94m|[0m
+[1m[94m265[0m [1m[94m|[0m impl TaskManager {
+    [1m[94m|[0m [1m[94m----------------[0m [1m[94mmethods in this implementation[0m
+[1m[94m...[0m
+[1m[94m286[0m [1m[94m|[0m     pub fn restore_tasks(&mut self, tasks: Vec<Task>) {
+    [1m[94m|[0m            [1m[33m^^^^^^^^^^^^^[0m
+[1m[94m...[0m
+[1m[94m397[0m [1m[94m|[0m     pub fn list(&self) -> Vec<Task> {
+    [1m[94m|[0m            [1m[33m^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: trait `StateSyncBuilder` is never used[0m
+ [1m[94m--> [0mtauri/src/core/state_v2/builder.rs:1:11
+  [1m[94m|[0m
+[1m[94m1[0m [1m[94m|[0m pub trait StateSyncBuilder: Default + Clone {
+  [1m[94m|[0m           [1m[33m^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: trait `StateAsyncBuilder` is never used[0m
+ [1m[94m--> [0mtauri/src/core/state_v2/builder.rs:7:11
+  [1m[94m|[0m
+[1m[94m7[0m [1m[94m|[0m pub trait StateAsyncBuilder: Default + Clone {
+  [1m[94m|[0m           [1m[33m^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: enum `StateChangedError` is never used[0m
+ [1m[94m--> [0mtauri/src/core/state_v2/coordinator.rs:4:10
+  [1m[94m|[0m
+[1m[94m4[0m [1m[94m|[0m pub enum StateChangedError {
+  [1m[94m|[0m          [1m[33m^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `MigrateError` is never constructed[0m
+  [1m[94m--> [0mtauri/src/core/state_v2/coordinator.rs:16:12
+   [1m[94m|[0m
+[1m[94m16[0m [1m[94m|[0m pub struct MigrateError {
+   [1m[94m|[0m            [1m[33m^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `RollbackError` is never constructed[0m
+  [1m[94m--> [0mtauri/src/core/state_v2/coordinator.rs:23:12
+   [1m[94m|[0m
+[1m[94m23[0m [1m[94m|[0m pub struct RollbackError {
+   [1m[94m|[0m            [1m[33m^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: trait `StateChangedSubscriber` is never used[0m
+  [1m[94m--> [0mtauri/src/core/state_v2/coordinator.rs:30:18
+   [1m[94m|[0m
+[1m[94m30[0m [1m[94m|[0m pub(crate) trait StateChangedSubscriber<T: Clone + Send + Sync + 'static> {
+   [1m[94m|[0m                  [1m[33m^^^^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: enum `ConcurrencyStrategy` is never used[0m
+  [1m[94m--> [0mtauri/src/core/state_v2/coordinator.rs:51:10
+   [1m[94m|[0m
+[1m[94m51[0m [1m[94m|[0m pub enum ConcurrencyStrategy {
+   [1m[94m|[0m          [1m[33m^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `StateCoordinator` is never constructed[0m
+  [1m[94m--> [0mtauri/src/core/state_v2/coordinator.rs:59:12
+   [1m[94m|[0m
+[1m[94m59[0m [1m[94m|[0m pub struct StateCoordinator<T: Clone + Send + Sync + 'static> {
+   [1m[94m|[0m            [1m[33m^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: associated items `new`, `add_subscriber`, `current_state`, `run_migration`, `upsert`, and `upsert_state` are never used[0m
+   [1m[94m--> [0mtauri/src/core/state_v2/coordinator.rs:66:19
+    [1m[94m|[0m
+ [1m[94m65[0m [1m[94m|[0m impl<T: Clone + Send + Sync> StateCoordinator<T> {
+    [1m[94m|[0m [1m[94m------------------------------------------------[0m [1m[94massociated items in this implementation[0m
+ [1m[94m66[0m [1m[94m|[0m     pub(super) fn new() -> Self {
+    [1m[94m|[0m                   [1m[33m^^^[0m
+[1m[94m...[0m
+ [1m[94m74[0m [1m[94m|[0m     fn add_subscriber(&mut self, subscriber: Box<dyn StateChangedSubscriber<T> + Send + Sync>) {
+    [1m[94m|[0m        [1m[33m^^^^^^^^^^^^^^[0m
+[1m[94m...[0m
+ [1m[94m79[0m [1m[94m|[0m     pub fn current_state(&self) -> Option<T> {
+    [1m[94m|[0m            [1m[33m^^^^^^^^^^^^^[0m
+[1m[94m...[0m
+ [1m[94m83[0m [1m[94m|[0m     async fn run_migration<S>(
+    [1m[94m|[0m              [1m[33m^^^^^^^^^^^^^[0m
+[1m[94m...[0m
+[1m[94m119[0m [1m[94m|[0m     pub async fn upsert(
+    [1m[94m|[0m                  [1m[33m^^^^^^[0m
+[1m[94m...[0m
+[1m[94m138[0m [1m[94m|[0m     pub async fn upsert_state(&mut self, state: T) -> Result<(), StateChangedError> {
+    [1m[94m|[0m                  [1m[33m^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: enum `UpsertError` is never used[0m
+  [1m[94m--> [0mtauri/src/core/state_v2/manager/persistent.rs:10:10
+   [1m[94m|[0m
+[1m[94m10[0m [1m[94m|[0m pub enum UpsertError {
+   [1m[94m|[0m          [1m[33m^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `PersistentStateManager` is never constructed[0m
+  [1m[94m--> [0mtauri/src/core/state_v2/manager/persistent.rs:17:12
+   [1m[94m|[0m
+[1m[94m17[0m [1m[94m|[0m pub struct PersistentStateManager<
+   [1m[94m|[0m            [1m[33m^^^^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: associated items `new`, `try_load`, `try_load_with_defaults`, `write_config`, `current_state`, and `upsert` are never used[0m
+  [1m[94m--> [0mtauri/src/core/state_v2/manager/persistent.rs:32:12
+   [1m[94m|[0m
+[1m[94m27[0m [1m[94m|[0m [1m[94m/[0m impl<State, Builder> PersistentStateManager<State, Builder>
+[1m[94m28[0m [1m[94m|[0m [1m[94m|[0m where
+[1m[94m29[0m [1m[94m|[0m [1m[94m|[0m     State: Clone + Send + Sync + 'static,
+[1m[94m30[0m [1m[94m|[0m [1m[94m|[0m     Builder: StateAsyncBuilder<State = State> + Serialize + DeserializeOwned,
+   [1m[94m|[0m [1m[94m|_____________________________________________________________________________-[0m [1m[94massociated items in this implementation[0m
+[1m[94m31[0m [1m[94m|[0m   {
+[1m[94m32[0m [1m[94m|[0m       pub fn new(
+   [1m[94m|[0m              [1m[33m^^^[0m
+[1m[94m...[0m
+[1m[94m45[0m [1m[94m|[0m       pub async fn try_load(&mut self) -> anyhow::Result<()> {
+   [1m[94m|[0m                    [1m[33m^^^^^^^^[0m
+[1m[94m...[0m
+[1m[94m55[0m [1m[94m|[0m       pub async fn try_load_with_defaults(&mut self) -> anyhow::Result<()> {
+   [1m[94m|[0m                    [1m[33m^^^^^^^^^^^^^^^^^^^^^^[0m
+[1m[94m...[0m
+[1m[94m68[0m [1m[94m|[0m       async fn write_config(&self, builder: Builder) -> anyhow::Result<()> {
+   [1m[94m|[0m                [1m[33m^^^^^^^^^^^^[0m
+[1m[94m...[0m
+[1m[94m73[0m [1m[94m|[0m       pub fn current_state(&self) -> Option<State> {
+   [1m[94m|[0m              [1m[33m^^^^^^^^^^^^^[0m
+[1m[94m...[0m
+[1m[94m77[0m [1m[94m|[0m       pub async fn upsert(&mut self, builder: Builder) -> Result<(), UpsertError> {
+   [1m[94m|[0m                    [1m[33m^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `SimpleStateManager` is never constructed[0m
+ [1m[94m--> [0mtauri/src/core/state_v2/manager/simple.rs:4:12
+  [1m[94m|[0m
+[1m[94m4[0m [1m[94m|[0m pub struct SimpleStateManager<State: Clone + Send + Sync + 'static> {
+  [1m[94m|[0m            [1m[33m^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: associated items `new`, `current_state`, and `upsert` are never used[0m
+  [1m[94m--> [0mtauri/src/core/state_v2/manager/simple.rs:9:12
+   [1m[94m|[0m
+ [1m[94m8[0m [1m[94m|[0m impl<State: Clone + Send + Sync + 'static> SimpleStateManager<State> {
+   [1m[94m|[0m [1m[94m--------------------------------------------------------------------[0m [1m[94massociated items in this implementation[0m
+ [1m[94m9[0m [1m[94m|[0m     pub fn new(state_coordinator: StateCoordinator<State>) -> Self {
+   [1m[94m|[0m            [1m[33m^^^[0m
+[1m[94m...[0m
+[1m[94m13[0m [1m[94m|[0m     pub fn current_state(&self) -> Option<State> {
+   [1m[94m|[0m            [1m[33m^^^^^^^^^^^^^[0m
+[1m[94m...[0m
+[1m[94m17[0m [1m[94m|[0m     pub async fn upsert(&mut self, state: State) -> Result<(), StateChangedError> {
+   [1m[94m|[0m                  [1m[33m^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: method `get_current_node_name` is never used[0m
+   [1m[94m--> [0mtauri/src/core/vpn/manager.rs:163:8
+    [1m[94m|[0m
+ [1m[94m43[0m [1m[94m|[0m impl VpnManager {
+    [1m[94m|[0m [1m[94m---------------[0m [1m[94mmethod in this implementation[0m
+[1m[94m...[0m
+[1m[94m163[0m [1m[94m|[0m     fn get_current_node_name(&self) -> Option<String> {
+    [1m[94m|[0m        [1m[33m^^^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: enum `ChainType` is never used[0m
+   [1m[94m--> [0mtauri/src/enhance/chain.rs:113:10
+    [1m[94m|[0m
+[1m[94m113[0m [1m[94m|[0m pub enum ChainType {
+    [1m[94m|[0m          [1m[33m^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: function `use_lowercase` is never used[0m
+  [1m[94m--> [0mtauri/src/enhance/field.rs:97:8
+   [1m[94m|[0m
+[1m[94m97[0m [1m[94m|[0m pub fn use_lowercase(config: Mapping) -> Mapping {
+   [1m[94m|[0m        [1m[33m^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: fields `span` and `is_function` are never read[0m
+   [1m[94m--> [0mtauri/src/enhance/script/js.rs:297:9
+    [1m[94m|[0m
+[1m[94m296[0m [1m[94m|[0m     struct DefaultExport {
+    [1m[94m|[0m            [1m[94m-------------[0m [1m[94mfields in this struct[0m
+[1m[94m297[0m [1m[94m|[0m         span: Span,
+    [1m[94m|[0m         [1m[33m^^^^[0m
+[1m[94m298[0m [1m[94m|[0m         is_function: bool,
+    [1m[94m|[0m         [1m[33m^^^^^^^^^^^[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mnote[0m: `DefaultExport` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: function `mount_handlers` is never used[0m
+ [1m[94m--> [0mtauri/src/event_handler/mod.rs:7:8
+  [1m[94m|[0m
+[1m[94m7[0m [1m[94m|[0m pub fn mount_handlers<M, R>(_app: &mut M)
+  [1m[94m|[0m        [1m[33m^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: enum `WidgetInstance` is never used[0m
+ [1m[94m--> [0mtauri/src/event_handler/widget.rs:3:10
+  [1m[94m|[0m
+[1m[94m3[0m [1m[94m|[0m pub enum WidgetInstance {
+  [1m[94m|[0m          [1m[33m^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: function `on_network_statistic_config_changed` is never used[0m
+ [1m[94m--> [0mtauri/src/event_handler/widget.rs:9:15
+  [1m[94m|[0m
+[1m[94m9[0m [1m[94m|[0m pub(super) fn on_network_statistic_config_changed<R: Runtime>(
+  [1m[94m|[0m               [1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: constant `LOGGING_NS` is never used[0m
+ [1m[94m--> [0mtauri/src/logging/mod.rs:4:7
+  [1m[94m|[0m
+[1m[94m4[0m [1m[94m|[0m const LOGGING_NS: &str = "logging";
+  [1m[94m|[0m       [1m[33m^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: constant `LOGGING_DB_PREFIX` is never used[0m
+ [1m[94m--> [0mtauri/src/logging/mod.rs:5:7
+  [1m[94m|[0m
+[1m[94m5[0m [1m[94m|[0m const LOGGING_DB_PREFIX: &str = "logging";
+  [1m[94m|[0m       [1m[33m^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: function `setup` is never used[0m
+  [1m[94m--> [0mtauri/src/logging/mod.rs:14:8
+   [1m[94m|[0m
+[1m[94m14[0m [1m[94m|[0m pub fn setup<R: tauri::Runtime, M: tauri::Manager<R>>(app: &M) -> anyhow::Result<()> {
+   [1m[94m|[0m        [1m[33m^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `LogEntry` is never constructed[0m
+  [1m[94m--> [0mtauri/src/logging/indexer.rs:33:12
+   [1m[94m|[0m
+[1m[94m33[0m [1m[94m|[0m pub struct LogEntry {
+   [1m[94m|[0m            [1m[33m^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `CurrentPos` is never constructed[0m
+  [1m[94m--> [0mtauri/src/logging/indexer.rs:51:8
+   [1m[94m|[0m
+[1m[94m51[0m [1m[94m|[0m struct CurrentPos {
+   [1m[94m|[0m        [1m[33m^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: type alias `LineNumber` is never used[0m
+  [1m[94m--> [0mtauri/src/logging/indexer.rs:70:10
+   [1m[94m|[0m
+[1m[94m70[0m [1m[94m|[0m pub type LineNumber = u64;
+   [1m[94m|[0m          [1m[33m^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: type alias `Timestamp` is never used[0m
+  [1m[94m--> [0mtauri/src/logging/indexer.rs:71:10
+   [1m[94m|[0m
+[1m[94m71[0m [1m[94m|[0m pub type Timestamp = u64;
+   [1m[94m|[0m          [1m[33m^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `LogIndex` is never constructed[0m
+  [1m[94m--> [0mtauri/src/logging/indexer.rs:73:8
+   [1m[94m|[0m
+[1m[94m73[0m [1m[94m|[0m struct LogIndex {
+   [1m[94m|[0m        [1m[33m^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: associated items `new`, `add_entry`, and `query` are never used[0m
+   [1m[94m--> [0mtauri/src/logging/indexer.rs:127:12
+    [1m[94m|[0m
+[1m[94m126[0m [1m[94m|[0m impl LogIndex {
+    [1m[94m|[0m [1m[94m-------------[0m [1m[94massociated items in this implementation[0m
+[1m[94m127[0m [1m[94m|[0m     pub fn new() -> Self {
+    [1m[94m|[0m            [1m[33m^^^[0m
+[1m[94m...[0m
+[1m[94m140[0m [1m[94m|[0m     pub fn add_entry(&mut self, entry: LogEntry) {
+    [1m[94m|[0m            [1m[33m^^^^^^^^^[0m
+[1m[94m...[0m
+[1m[94m203[0m [1m[94m|[0m     pub fn query(&self, query: Query) -> Option<Vec<LogEntry>> {
+    [1m[94m|[0m            [1m[33m^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `Indexer` is never constructed[0m
+   [1m[94m--> [0mtauri/src/logging/indexer.rs:294:12
+    [1m[94m|[0m
+[1m[94m294[0m [1m[94m|[0m pub struct Indexer {
+    [1m[94m|[0m            [1m[33m^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `TracingJson` is never constructed[0m
+   [1m[94m--> [0mtauri/src/logging/indexer.rs:301:8
+    [1m[94m|[0m
+[1m[94m301[0m [1m[94m|[0m struct TracingJson {
+    [1m[94m|[0m        [1m[33m^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: associated items `new`, `handle_line`, `build_index`, `query`, and `on_file_change` are never used[0m
+   [1m[94m--> [0mtauri/src/logging/indexer.rs:308:12
+    [1m[94m|[0m
+[1m[94m307[0m [1m[94m|[0m impl Indexer {
+    [1m[94m|[0m [1m[94m------------[0m [1m[94massociated items in this implementation[0m
+[1m[94m308[0m [1m[94m|[0m     pub fn new(path: Utf8PathBuf) -> Self {
+    [1m[94m|[0m            [1m[33m^^^[0m
+[1m[94m...[0m
+[1m[94m316[0m [1m[94m|[0m     fn handle_line(
+    [1m[94m|[0m        [1m[33m^^^^^^^^^^^[0m
+[1m[94m...[0m
+[1m[94m339[0m [1m[94m|[0m     pub async fn build_index(&mut self) -> anyhow::Result<()> {
+    [1m[94m|[0m                  [1m[33m^^^^^^^^^^^[0m
+[1m[94m...[0m
+[1m[94m363[0m [1m[94m|[0m     pub fn query(&self, query: Query) -> Option<Vec<LogEntry>> {
+    [1m[94m|[0m            [1m[33m^^^^^[0m
+[1m[94m...[0m
+[1m[94m367[0m [1m[94m|[0m     pub async fn on_file_change(&mut self) -> anyhow::Result<()> {
+    [1m[94m|[0m                  [1m[33m^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `IndexerManager` is never constructed[0m
+  [1m[94m--> [0mtauri/src/logging/manager.rs:23:12
+   [1m[94m|[0m
+[1m[94m23[0m [1m[94m|[0m pub struct IndexerManager {
+   [1m[94m|[0m            [1m[33m^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: function `is_log_file` is never used[0m
+  [1m[94m--> [0mtauri/src/logging/manager.rs:35:10
+   [1m[94m|[0m
+[1m[94m35[0m [1m[94m|[0m async fn is_log_file(path: &Utf8Path) -> anyhow::Result<bool> {
+   [1m[94m|[0m          [1m[33m^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: associated function `try_new` is never used[0m
+  [1m[94m--> [0mtauri/src/logging/manager.rs:44:18
+   [1m[94m|[0m
+[1m[94m43[0m [1m[94m|[0m impl IndexerManager {
+   [1m[94m|[0m [1m[94m-------------------[0m [1m[94massociated function in this implementation[0m
+[1m[94m44[0m [1m[94m|[0m     pub async fn try_new(logging_dir: Utf8PathBuf) -> anyhow::Result<Self> {
+   [1m[94m|[0m                  [1m[33m^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `IndexerManagerRunner` is never constructed[0m
+  [1m[94m--> [0mtauri/src/logging/manager.rs:55:12
+   [1m[94m|[0m
+[1m[94m55[0m [1m[94m|[0m pub struct IndexerManagerRunner {
+   [1m[94m|[0m            [1m[33m^^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: enum `IndexerRunnerCmd` is never used[0m
+  [1m[94m--> [0mtauri/src/logging/manager.rs:60:10
+   [1m[94m|[0m
+[1m[94m60[0m [1m[94m|[0m pub enum IndexerRunnerCmd {
+   [1m[94m|[0m          [1m[33m^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: struct `IndexerRunnerGuard` is never constructed[0m
+  [1m[94m--> [0mtauri/src/logging/manager.rs:72:12
+   [1m[94m|[0m
+[1m[94m72[0m [1m[94m|[0m pub struct IndexerRunnerGuard {
+   [1m[94m|[0m            [1m[33m^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: associated items `new_and_spawn`, `spawn_task`, `run_cmd`, `spawn_watcher`, `scan`, and `recommended_watcher` are never used[0m
+   [1m[94m--> [0mtauri/src/logging/manager.rs:79:18
+    [1m[94m|[0m
+ [1m[94m78[0m [1m[94m|[0m impl IndexerManagerRunner {
+    [1m[94m|[0m [1m[94m-------------------------[0m [1m[94massociated items in this implementation[0m
+ [1m[94m79[0m [1m[94m|[0m     pub async fn new_and_spawn() -> IndexerRunnerGuard {
+    [1m[94m|[0m                  [1m[33m^^^^^^^^^^^^^[0m
+[1m[94m...[0m
+ [1m[94m91[0m [1m[94m|[0m     fn spawn_task(
+    [1m[94m|[0m        [1m[33m^^^^^^^^^^[0m
+[1m[94m...[0m
+[1m[94m128[0m [1m[94m|[0m     async fn run_cmd(&mut self, cmd_tx: &UnboundedSender<IndexerRunnerCmd>, cmd: IndexerRunnerCmd) {
+    [1m[94m|[0m              [1m[33m^^^^^^^[0m
+[1m[94m...[0m
+[1m[94m169[0m [1m[94m|[0m     async fn spawn_watcher(
+    [1m[94m|[0m              [1m[33m^^^^^^^^^^^^^[0m
+[1m[94m...[0m
+[1m[94m231[0m [1m[94m|[0m     pub async fn scan(&mut self, logging_dir: &Utf8Path) -> anyhow::Result<()> {
+    [1m[94m|[0m                  [1m[33m^^^^[0m
+[1m[94m...[0m
+[1m[94m247[0m [1m[94m|[0m     pub fn recommended_watcher(
+    [1m[94m|[0m            [1m[33m^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: method `watch` is never used[0m
+   [1m[94m--> [0mtauri/src/logging/manager.rs:283:18
+    [1m[94m|[0m
+[1m[94m282[0m [1m[94m|[0m impl IndexerRunnerGuard {
+    [1m[94m|[0m [1m[94m-----------------------[0m [1m[94mmethod in this implementation[0m
+[1m[94m283[0m [1m[94m|[0m     pub async fn watch(&self, logging_dir: &Utf8Path) -> anyhow::Result<()> {
+    [1m[94m|[0m                  [1m[33m^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: function `do_config_migration` is never used[0m
+   [1m[94m--> [0mtauri/src/utils/init/mod.rs:282:8
+    [1m[94m|[0m
+[1m[94m282[0m [1m[94m|[0m pub fn do_config_migration(old_app_dir: &PathBuf, app_dir: &PathBuf) -> anyhow::Result<()> {
+    [1m[94m|[0m        [1m[33m^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: function `set_window_controls_pos` is never used[0m
+  [1m[94m--> [0mtauri/src/utils/resolve.rs:30:4
+   [1m[94m|[0m
+[1m[94m30[0m [1m[94m|[0m fn set_window_controls_pos(
+   [1m[94m|[0m    [1m[33m^^^^^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: field `mode` is never read[0m
+  [1m[94m--> [0mtauri/src/utils/downloader.rs:50:5
+   [1m[94m|[0m
+[1m[94m44[0m [1m[94m|[0m struct DownloaderInner {
+   [1m[94m|[0m        [1m[94m---------------[0m [1m[94mfield in this struct[0m
+[1m[94m...[0m
+[1m[94m50[0m [1m[94m|[0m     mode: DownloadMode,
+   [1m[94m|[0m     [1m[33m^^^^[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mnote[0m: `DownloaderInner` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: variant `SingleThread` is never constructed[0m
+   [1m[94m--> [0mtauri/src/utils/downloader.rs:137:5
+    [1m[94m|[0m
+[1m[94m136[0m [1m[94m|[0m pub enum DownloadMode {
+    [1m[94m|[0m          [1m[94m------------[0m [1m[94mvariant in this enum[0m
+[1m[94m137[0m [1m[94m|[0m     SingleThread,
+    [1m[94m|[0m     [1m[33m^^^^^^^^^^^^[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mnote[0m: `DownloadMode` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: variant `Reason` is never constructed[0m
+   [1m[94m--> [0mtauri/src/utils/downloader.rs:168:5
+    [1m[94m|[0m
+[1m[94m167[0m [1m[94m|[0m enum DecreaseSemaphoreReason {
+    [1m[94m|[0m      [1m[94m-----------------------[0m [1m[94mvariant in this enum[0m
+[1m[94m168[0m [1m[94m|[0m     Reason(String),
+    [1m[94m|[0m     [1m[33m^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: hiding a lifetime that's elided elsewhere is confusing[0m
+  [1m[94m--> [0mtauri/src/config/draft.rs:14:25
+   [1m[94m|[0m
+[1m[94m14[0m [1m[94m|[0m             pub fn data(&self) -> MappedMutexGuard<$id> {
+   [1m[94m|[0m                         [1m[33m^^^^^[0m     [1m[33m^^^^^^^^^^^^^^^^^^^^^[0m [1m[33mthe same lifetime is hidden here[0m
+   [1m[94m|[0m                         [1m[33m|[0m
+   [1m[94m|[0m                         [1m[33mthe lifetime is elided here[0m
+[1m[94m...[0m
+[1m[94m68[0m [1m[94m|[0m draft_define!(IClashTemp);
+   [1m[94m|[0m [1m[94m-------------------------[0m [1m[94min this macro invocation[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mhelp[0m: the same lifetime is referred to in inconsistent ways, making the signature confusing
+   [1m[94m= [0m[1mnote[0m: `#[warn(mismatched_lifetime_syntaxes)]` on by default
+   [1m[94m= [0m[1mnote[0m: this warning originates in the macro `draft_define` (in Nightly builds, run with -Z macro-backtrace for more info)
+[1m[96mhelp[0m: use `'_` for type paths
+   [1m[94m|[0m
+[1m[94m14[0m [1m[94m| [0m            pub fn data(&self) -> MappedMutexGuard<[92m'_, [0m$id> {
+   [1m[94m|[0m                                                    [92m+++[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: hiding a lifetime that's elided elsewhere is confusing[0m
+  [1m[94m--> [0mtauri/src/config/draft.rs:18:27
+   [1m[94m|[0m
+[1m[94m18[0m [1m[94m|[0m             pub fn latest(&self) -> MappedMutexGuard<$id> {
+   [1m[94m|[0m                           [1m[33m^^^^^[0m     [1m[33m^^^^^^^^^^^^^^^^^^^^^[0m [1m[33mthe same lifetime is hidden here[0m
+   [1m[94m|[0m                           [1m[33m|[0m
+   [1m[94m|[0m                           [1m[33mthe lifetime is elided here[0m
+[1m[94m...[0m
+[1m[94m68[0m [1m[94m|[0m draft_define!(IClashTemp);
+   [1m[94m|[0m [1m[94m-------------------------[0m [1m[94min this macro invocation[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mhelp[0m: the same lifetime is referred to in inconsistent ways, making the signature confusing
+   [1m[94m= [0m[1mnote[0m: this warning originates in the macro `draft_define` (in Nightly builds, run with -Z macro-backtrace for more info)
+[1m[96mhelp[0m: use `'_` for type paths
+   [1m[94m|[0m
+[1m[94m18[0m [1m[94m| [0m            pub fn latest(&self) -> MappedMutexGuard<[92m'_, [0m$id> {
+   [1m[94m|[0m                                                      [92m+++[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: hiding a lifetime that's elided elsewhere is confusing[0m
+  [1m[94m--> [0mtauri/src/config/draft.rs:28:26
+   [1m[94m|[0m
+[1m[94m28[0m [1m[94m|[0m             pub fn draft(&self) -> MappedMutexGuard<$id> {
+   [1m[94m|[0m                          [1m[33m^^^^^[0m     [1m[33m^^^^^^^^^^^^^^^^^^^^^[0m [1m[33mthe same lifetime is hidden here[0m
+   [1m[94m|[0m                          [1m[33m|[0m
+   [1m[94m|[0m                          [1m[33mthe lifetime is elided here[0m
+[1m[94m...[0m
+[1m[94m68[0m [1m[94m|[0m draft_define!(IClashTemp);
+   [1m[94m|[0m [1m[94m-------------------------[0m [1m[94min this macro invocation[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mhelp[0m: the same lifetime is referred to in inconsistent ways, making the signature confusing
+   [1m[94m= [0m[1mnote[0m: this warning originates in the macro `draft_define` (in Nightly builds, run with -Z macro-backtrace for more info)
+[1m[96mhelp[0m: use `'_` for type paths
+   [1m[94m|[0m
+[1m[94m28[0m [1m[94m| [0m            pub fn draft(&self) -> MappedMutexGuard<[92m'_, [0m$id> {
+   [1m[94m|[0m                                                     [92m+++[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: hiding a lifetime that's elided elsewhere is confusing[0m
+  [1m[94m--> [0mtauri/src/config/draft.rs:14:25
+   [1m[94m|[0m
+[1m[94m14[0m [1m[94m|[0m             pub fn data(&self) -> MappedMutexGuard<$id> {
+   [1m[94m|[0m                         [1m[33m^^^^^[0m     [1m[33m^^^^^^^^^^^^^^^^^^^^^[0m [1m[33mthe same lifetime is hidden here[0m
+   [1m[94m|[0m                         [1m[33m|[0m
+   [1m[94m|[0m                         [1m[33mthe lifetime is elided here[0m
+[1m[94m...[0m
+[1m[94m69[0m [1m[94m|[0m draft_define!(IRuntime);
+   [1m[94m|[0m [1m[94m-----------------------[0m [1m[94min this macro invocation[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mhelp[0m: the same lifetime is referred to in inconsistent ways, making the signature confusing
+   [1m[94m= [0m[1mnote[0m: this warning originates in the macro `draft_define` (in Nightly builds, run with -Z macro-backtrace for more info)
+[1m[96mhelp[0m: use `'_` for type paths
+   [1m[94m|[0m
+[1m[94m14[0m [1m[94m| [0m            pub fn data(&self) -> MappedMutexGuard<[92m'_, [0m$id> {
+   [1m[94m|[0m                                                    [92m+++[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: hiding a lifetime that's elided elsewhere is confusing[0m
+  [1m[94m--> [0mtauri/src/config/draft.rs:18:27
+   [1m[94m|[0m
+[1m[94m18[0m [1m[94m|[0m             pub fn latest(&self) -> MappedMutexGuard<$id> {
+   [1m[94m|[0m                           [1m[33m^^^^^[0m     [1m[33m^^^^^^^^^^^^^^^^^^^^^[0m [1m[33mthe same lifetime is hidden here[0m
+   [1m[94m|[0m                           [1m[33m|[0m
+   [1m[94m|[0m                           [1m[33mthe lifetime is elided here[0m
+[1m[94m...[0m
+[1m[94m69[0m [1m[94m|[0m draft_define!(IRuntime);
+   [1m[94m|[0m [1m[94m-----------------------[0m [1m[94min this macro invocation[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mhelp[0m: the same lifetime is referred to in inconsistent ways, making the signature confusing
+   [1m[94m= [0m[1mnote[0m: this warning originates in the macro `draft_define` (in Nightly builds, run with -Z macro-backtrace for more info)
+[1m[96mhelp[0m: use `'_` for type paths
+   [1m[94m|[0m
+[1m[94m18[0m [1m[94m| [0m            pub fn latest(&self) -> MappedMutexGuard<[92m'_, [0m$id> {
+   [1m[94m|[0m                                                      [92m+++[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: hiding a lifetime that's elided elsewhere is confusing[0m
+  [1m[94m--> [0mtauri/src/config/draft.rs:28:26
+   [1m[94m|[0m
+[1m[94m28[0m [1m[94m|[0m             pub fn draft(&self) -> MappedMutexGuard<$id> {
+   [1m[94m|[0m                          [1m[33m^^^^^[0m     [1m[33m^^^^^^^^^^^^^^^^^^^^^[0m [1m[33mthe same lifetime is hidden here[0m
+   [1m[94m|[0m                          [1m[33m|[0m
+   [1m[94m|[0m                          [1m[33mthe lifetime is elided here[0m
+[1m[94m...[0m
+[1m[94m69[0m [1m[94m|[0m draft_define!(IRuntime);
+   [1m[94m|[0m [1m[94m-----------------------[0m [1m[94min this macro invocation[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mhelp[0m: the same lifetime is referred to in inconsistent ways, making the signature confusing
+   [1m[94m= [0m[1mnote[0m: this warning originates in the macro `draft_define` (in Nightly builds, run with -Z macro-backtrace for more info)
+[1m[96mhelp[0m: use `'_` for type paths
+   [1m[94m|[0m
+[1m[94m28[0m [1m[94m| [0m            pub fn draft(&self) -> MappedMutexGuard<[92m'_, [0m$id> {
+   [1m[94m|[0m                                                     [92m+++[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: hiding a lifetime that's elided elsewhere is confusing[0m
+  [1m[94m--> [0mtauri/src/config/draft.rs:14:25
+   [1m[94m|[0m
+[1m[94m14[0m [1m[94m|[0m             pub fn data(&self) -> MappedMutexGuard<$id> {
+   [1m[94m|[0m                         [1m[33m^^^^^[0m     [1m[33m^^^^^^^^^^^^^^^^^^^^^[0m [1m[33mthe same lifetime is hidden here[0m
+   [1m[94m|[0m                         [1m[33m|[0m
+   [1m[94m|[0m                         [1m[33mthe lifetime is elided here[0m
+[1m[94m...[0m
+[1m[94m70[0m [1m[94m|[0m draft_define!(IVerge);
+   [1m[94m|[0m [1m[94m---------------------[0m [1m[94min this macro invocation[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mhelp[0m: the same lifetime is referred to in inconsistent ways, making the signature confusing
+   [1m[94m= [0m[1mnote[0m: this warning originates in the macro `draft_define` (in Nightly builds, run with -Z macro-backtrace for more info)
+[1m[96mhelp[0m: use `'_` for type paths
+   [1m[94m|[0m
+[1m[94m14[0m [1m[94m| [0m            pub fn data(&self) -> MappedMutexGuard<[92m'_, [0m$id> {
+   [1m[94m|[0m                                                    [92m+++[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: hiding a lifetime that's elided elsewhere is confusing[0m
+  [1m[94m--> [0mtauri/src/config/draft.rs:18:27
+   [1m[94m|[0m
+[1m[94m18[0m [1m[94m|[0m             pub fn latest(&self) -> MappedMutexGuard<$id> {
+   [1m[94m|[0m                           [1m[33m^^^^^[0m     [1m[33m^^^^^^^^^^^^^^^^^^^^^[0m [1m[33mthe same lifetime is hidden here[0m
+   [1m[94m|[0m                           [1m[33m|[0m
+   [1m[94m|[0m                           [1m[33mthe lifetime is elided here[0m
+[1m[94m...[0m
+[1m[94m70[0m [1m[94m|[0m draft_define!(IVerge);
+   [1m[94m|[0m [1m[94m---------------------[0m [1m[94min this macro invocation[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mhelp[0m: the same lifetime is referred to in inconsistent ways, making the signature confusing
+   [1m[94m= [0m[1mnote[0m: this warning originates in the macro `draft_define` (in Nightly builds, run with -Z macro-backtrace for more info)
+[1m[96mhelp[0m: use `'_` for type paths
+   [1m[94m|[0m
+[1m[94m18[0m [1m[94m| [0m            pub fn latest(&self) -> MappedMutexGuard<[92m'_, [0m$id> {
+   [1m[94m|[0m                                                      [92m+++[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: hiding a lifetime that's elided elsewhere is confusing[0m
+  [1m[94m--> [0mtauri/src/config/draft.rs:28:26
+   [1m[94m|[0m
+[1m[94m28[0m [1m[94m|[0m             pub fn draft(&self) -> MappedMutexGuard<$id> {
+   [1m[94m|[0m                          [1m[33m^^^^^[0m     [1m[33m^^^^^^^^^^^^^^^^^^^^^[0m [1m[33mthe same lifetime is hidden here[0m
+   [1m[94m|[0m                          [1m[33m|[0m
+   [1m[94m|[0m                          [1m[33mthe lifetime is elided here[0m
+[1m[94m...[0m
+[1m[94m70[0m [1m[94m|[0m draft_define!(IVerge);
+   [1m[94m|[0m [1m[94m---------------------[0m [1m[94min this macro invocation[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mhelp[0m: the same lifetime is referred to in inconsistent ways, making the signature confusing
+   [1m[94m= [0m[1mnote[0m: this warning originates in the macro `draft_define` (in Nightly builds, run with -Z macro-backtrace for more info)
+[1m[96mhelp[0m: use `'_` for type paths
+   [1m[94m|[0m
+[1m[94m28[0m [1m[94m| [0m            pub fn draft(&self) -> MappedMutexGuard<[92m'_, [0m$id> {
+   [1m[94m|[0m                                                     [92m+++[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: hiding a lifetime that's elided elsewhere is confusing[0m
+  [1m[94m--> [0mtauri/src/core/state.rs:49:24
+   [1m[94m|[0m
+[1m[94m49[0m [1m[94m|[0m     pub fn auto_commit(&self) -> ManagedStateAutoCommit<T> {
+   [1m[94m|[0m                        [1m[33m^^^^^[0m     [1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[33mthe same lifetime is hidden here[0m
+   [1m[94m|[0m                        [1m[33m|[0m
+   [1m[94m|[0m                        [1m[33mthe lifetime is elided here[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mhelp[0m: the same lifetime is referred to in inconsistent ways, making the signature confusing
+[1m[96mhelp[0m: use `'_` for type paths
+   [1m[94m|[0m
+[1m[94m49[0m [1m[94m| [0m    pub fn auto_commit(&self) -> ManagedStateAutoCommit<[92m'_, [0mT> {
+   [1m[94m|[0m                                                         [92m+++[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m: `clash-nyanpasu` (lib) generated 107 warnings (run `cargo fix --lib -p clash-nyanpasu` to apply 23 suggestions)
+[1m[96m    Building[0m [=====================> ] 1109/1110: clash-nyanpasu(bin)         [K[1m[92m    Finished[0m ]8;;https://doc.rust-lang.org/cargo/reference/profiles.html#default-profiles\`dev` profile [unoptimized + debuginfo]]8;;\ target(s) in 10.05s
+[1m[92m     Running[0m `/Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main/backend/target/debug/clash-nyanpasu`
+/Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main/frontend/nyanpasu:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @nyanpasu/nyanpasu@2.0.0-alpha+10a82d25 dev: `vite`
+Command failed with signal "SIGTERM"

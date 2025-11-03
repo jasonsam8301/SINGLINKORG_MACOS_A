@@ -1,0 +1,50 @@
+warning: unnecessary `unsafe` block
+   --> tauri/src/window.rs:176:17
+    |
+176 |                 unsafe { self.ivars().super_class.windowDidResignKey(notification) }
+    |                 ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> tauri/src/window.rs:182:17
+    |
+182 |                 unsafe { self.ivars().super_class.window_willUseFullScreenPresentationOptions(window, options) }
+    |                 ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> tauri/src/window.rs:191:17
+    |
+191 |                 unsafe { self.ivars().super_class.windowDidEnterFullScreen(notification) }
+    |                 ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> tauri/src/window.rs:199:17
+    |
+199 |                 unsafe { self.ivars().super_class.windowWillEnterFullScreen(notification) }
+    |                 ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> tauri/src/window.rs:208:17
+    |
+208 |                 unsafe { self.ivars().super_class.windowWillExitFullScreen(notification) }
+    |                 ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> tauri/src/window.rs:218:17
+    |
+218 |                 unsafe { self.ivars().super_class.windowDidExitFullScreen(notification) }
+    |                 ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> tauri/src/window.rs:224:17
+    |
+224 |                 unsafe { self.ivars().super_class.windowDidFailToEnterFullScreen(window) }
+    |                 ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> tauri/src/window.rs:234:39
+    |
+234 |                 .with_ns_window(|win| unsafe { win.delegate().expect("failed to get delegate") });
+    |                                       ^^^^^^ unnecessary `unsafe` block
+
+warning: `clash-nyanpasu` (lib) generated 35 warnings
+error: could not compile `clash-nyanpasu` (lib) due to 1 previous error; 35 warnings emitted

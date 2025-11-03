@@ -1,0 +1,332 @@
+
+> @nyanpasu/monorepo@2.0.0 tauri:dev /Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main
+> tauri dev -c ./backend/tauri/tauri.conf.json
+
+     Running BeforeDevCommand (`pnpm run web:dev`)
+     Running DevCommand (`cargo  run --no-default-features --features default-meta --color always --`)
+        Info Watching /Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main/backend/tauri for changes...
+        Info Watching /Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main/backend/tauri for changes...
+        Info Watching /Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main/backend/boa_utils for changes...
+        Info Watching /Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main/backend/nyanpasu-macro for changes...
+        Info Watching /Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main/backend/nyanpasu-egui for changes...
+
+> @nyanpasu/monorepo@2.0.0 web:dev /Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main
+> pnpm --filter=@nyanpasu/nyanpasu dev
+
+[1m[92m    Blocking[0m waiting for file lock on build directory
+
+> @nyanpasu/nyanpasu@2.0.0-alpha+10a82d25 dev /Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main/frontend/nyanpasu
+> vite
+
+Port 3000 is in use, trying another one...
+Port 3001 is in use, trying another one...
+
+  VITE v7.1.12  ready in 915 ms
+
+  ➜  Local:   http://localhost:3002/
+  ➜  Network: use --host to expose
+[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+  [1m[94m--> [0mnyanpasu-egui/src/widget/mod.rs:33:5
+   [1m[94m|[0m
+[1m[94m33[0m [1m[94m|[0m     unsafe {
+   [1m[94m|[0m     [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mnote[0m: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+[1m[33mwarning[0m[1m: function `get_window_state_path` is never used[0m
+ [1m[94m--> [0mnyanpasu-egui/src/widget/mod.rs:9:4
+  [1m[94m|[0m
+[1m[94m9[0m [1m[94m|[0m fn get_window_state_path() -> std::io::Result<PathBuf> {
+  [1m[94m|[0m    [1m[33m^^^^^^^^^^^^^^^^^^^^^[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1mnote[0m: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+[1m[33mwarning[0m: `nyanpasu-egui` (lib) generated 2 warnings
+[1m[33mwarning[0m[1m: use of deprecated macro `msg_send_id`: use a normal msg_send! instead, it will now perform the conversion to/from `Retained` for you[0m
+  [1m[94m--> [0mtauri-plugin-deep-link/src/macos.rs:79:18
+   [1m[94m|[0m
+[1m[94m79[0m [1m[94m|[0m         unsafe { msg_send_id![msg_send_id![cls, alloc], init] }
+   [1m[94m|[0m                  [1m[33m^^^^^^^^^^^[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mnote[0m: `#[warn(deprecated)]` on by default
+
+[1m[33mwarning[0m[1m: use of deprecated macro `msg_send_id`: use a normal msg_send! instead, it will now perform the conversion to/from `Retained` for you[0m
+  [1m[94m--> [0mtauri-plugin-deep-link/src/macos.rs:79:31
+   [1m[94m|[0m
+[1m[94m79[0m [1m[94m|[0m         unsafe { msg_send_id![msg_send_id![cls, alloc], init] }
+   [1m[94m|[0m                               [1m[33m^^^^^^^^^^^[0m
+
+[1m[33mwarning[0m[1m: use of deprecated macro `msg_send_id`: use a normal msg_send! instead, it will now perform the conversion to/from `Retained` for you[0m
+   [1m[94m--> [0mtauri-plugin-deep-link/src/macos.rs:138:13
+    [1m[94m|[0m
+[1m[94m138[0m [1m[94m|[0m             msg_send_id![class!(NSAppleEventManager), sharedAppleEventManager];
+    [1m[94m|[0m             [1m[33m^^^^^^^^^^^[0m
+
+[1m[33mwarning[0m[1m: use of deprecated macro `objc2::msg_send_id`: use a normal msg_send! instead, it will now perform the conversion to/from `Retained` for you[0m
+ [1m[94m--> [0mtauri-plugin-deep-link/src/macos.rs:9:36
+  [1m[94m|[0m
+[1m[94m9[0m [1m[94m|[0m     class, define_class, msg_send, msg_send_id,
+  [1m[94m|[0m                                    [1m[33m^^^^^^^^^^^[0m
+
+[1m[33mwarning[0m[1m: use of deprecated function `platform_impl::listen::__missing_comma`: using msg_send! without a comma between arguments is technically not valid macro syntax, and may break in a future version of Rust. You should use the following instead:[0m
+[1m         msg_send![&event_manager, setEventHandler: &**handler_boxed, andSelector: sel!(handleEvent:withReplyEvent:), forEventClass: EVENT_CLASS, andEventID: EVENT_GET_URL][0m
+   [1m[94m--> [0mtauri-plugin-deep-link/src/macos.rs:143:21
+    [1m[94m|[0m
+[1m[94m143[0m [1m[94m|[0m           let _: () = msg_send![&event_manager,
+    [1m[94m|[0m [1m[33m _____________________^[0m
+[1m[94m144[0m [1m[94m|[0m [1m[33m|[0m             setEventHandler: &**handler_boxed
+[1m[94m145[0m [1m[94m|[0m [1m[33m|[0m             andSelector: sel!(handleEvent:withReplyEvent:)
+[1m[94m146[0m [1m[94m|[0m [1m[33m|[0m             forEventClass:EVENT_CLASS
+[1m[94m147[0m [1m[94m|[0m [1m[33m|[0m             andEventID:EVENT_GET_URL];
+    [1m[94m|[0m [1m[33m|_____________________________________^[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mnote[0m: this warning originates in the macro `$crate::__missing_comma_between_args_inner` which comes from the expansion of the macro `msg_send` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+[1m[33mwarning[0m: `tauri-plugin-deep-link` (lib) generated 5 warnings
+[1m[92m   Compiling[0m clash-nyanpasu v0.1.0 (/Users/starwork/workspace/macosnewsinglinkv2/docs/clash-nyanpasu-main/backend/tauri)
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[91merror[E0432][0m[1m: unresolved import `crate::core::clash::ClashCore`[0m
+  [1m[94m--> [0mtauri/src/core/vpn/manager.rs:13:5
+   [1m[94m|[0m
+[1m[94m13[0m [1m[94m|[0m use crate::core::clash::ClashCore;
+   [1m[94m|[0m     [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mno `ClashCore` in `core::clash`[0m
+   [1m[94m|[0m
+[1m[92mnote[0m: enum `crate::ipc::uwp::nyanpasu::ClashCore` exists but is inaccessible
+  [1m[94m--> [0mtauri/src/config/nyanpasu/mod.rs:30:1
+   [1m[94m|[0m
+[1m[94m30[0m [1m[94m|[0m pub enum ClashCore {
+   [1m[94m|[0m [1m[92m^^^^^^^^^^^^^^^^^^[0m [1m[92mnot accessible[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[91merror[E0432][0m[1m: unresolved import `crate::core::run_core`[0m
+   [1m[94m--> [0mtauri/src/core/vpn/manager.rs:125:13
+    [1m[94m|[0m
+[1m[94m125[0m [1m[94m|[0m         use crate::core::run_core;
+    [1m[94m|[0m             [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mno `run_core` in `core`[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `runas::Command as RunasCommand`[0m
+ [1m[94m--> [0mtauri/src/core/service/control.rs:2:5
+  [1m[94m|[0m
+[1m[94m2[0m [1m[94m|[0m use runas::Command as RunasCommand;
+  [1m[94m|[0m     [1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1mnote[0m: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `persistent::*`[0m
+ [1m[94m--> [0mtauri/src/core/state_v2/manager.rs:6:9
+  [1m[94m|[0m
+[1m[94m6[0m [1m[94m|[0m pub use persistent::*;
+  [1m[94m|[0m         [1m[33m^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `simple::*`[0m
+ [1m[94m--> [0mtauri/src/core/state_v2/manager.rs:7:9
+  [1m[94m|[0m
+[1m[94m7[0m [1m[94m|[0m pub use simple::*;
+  [1m[94m|[0m         [1m[33m^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `coordinator::*`[0m
+ [1m[94m--> [0mtauri/src/core/state_v2/mod.rs:5:9
+  [1m[94m|[0m
+[1m[94m5[0m [1m[94m|[0m pub use coordinator::*;
+  [1m[94m|[0m         [1m[33m^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `std::process::Command`[0m
+ [1m[94m--> [0mtauri/src/core/vpn/manager.rs:7:5
+  [1m[94m|[0m
+[1m[94m7[0m [1m[94m|[0m use std::process::Command;
+  [1m[94m|[0m     [1m[33m^^^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `crate::config::Config`[0m
+  [1m[94m--> [0mtauri/src/core/vpn/manager.rs:12:5
+   [1m[94m|[0m
+[1m[94m12[0m [1m[94m|[0m use crate::config::Config;
+   [1m[94m|[0m     [1m[33m^^^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `manager::VpnManager`[0m
+  [1m[94m--> [0mtauri/src/core/vpn/mod.rs:12:9
+   [1m[94m|[0m
+[1m[94m12[0m [1m[94m|[0m pub use manager::VpnManager;
+   [1m[94m|[0m         [1m[33m^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `anyhow::Context`[0m
+ [1m[94m--> [0mtauri/src/setup.rs:2:5
+  [1m[94m|[0m
+[1m[94m2[0m [1m[94m|[0m use anyhow::Context;
+  [1m[94m|[0m     [1m[33m^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused imports: `Listener`, `Manager`, `Runtime`, and `Window`[0m
+  [1m[94m--> [0mtauri/src/window.rs:15:26
+   [1m[94m|[0m
+[1m[94m15[0m [1m[94m|[0m     use tauri::{Emitter, Listener, Manager, Runtime, WebviewWindow, Window, WindowEvent};
+   [1m[94m|[0m                          [1m[33m^^^^^^^^[0m  [1m[33m^^^^^^^[0m  [1m[33m^^^^^^^[0m                 [1m[33m^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[91merror[E0282][0m[1m: type annotations needed[0m
+   [1m[94m--> [0mtauri/src/core/vpn/manager.rs:134:13
+    [1m[94m|[0m
+[1m[94m134[0m [1m[94m|[0m             run_core().await.map_err(|e| anyhow!("启动Clash失败: {}", e))?;
+    [1m[94m|[0m             [1m[91m^^^^^^^^^^^^^^^^[0m [1m[91mcannot infer type[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: use of deprecated field `config::nyanpasu::IVerge::auto_close_connection`: use `break_when_proxy_change` instead[0m
+   [1m[94m--> [0mtauri/src/config/nyanpasu/mod.rs:356:12
+    [1m[94m|[0m
+[1m[94m356[0m [1m[94m|[0m         if config.auto_close_connection.is_some() && config.break_when_proxy_change.is_none() {
+    [1m[94m|[0m            [1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mnote[0m: `#[warn(deprecated)]` on by default
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: use of deprecated field `config::nyanpasu::IVerge::auto_close_connection`: use `break_when_proxy_change` instead[0m
+   [1m[94m--> [0mtauri/src/config/nyanpasu/mod.rs:357:49
+    [1m[94m|[0m
+[1m[94m357[0m [1m[94m|[0m             config.break_when_proxy_change = if config.auto_close_connection.unwrap() {
+    [1m[94m|[0m                                                 [1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused import: `Manager`[0m
+  [1m[94m--> [0mtauri/src/lib.rs:35:22
+   [1m[94m|[0m
+[1m[94m35[0m [1m[94m|[0m use tauri::{Emitter, Manager};
+   [1m[94m|[0m                      [1m[33m^^^^^^^[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused variable: `type_map`[0m
+  [1m[94m--> [0mtauri/src/ipc.rs:65:9
+   [1m[94m|[0m
+[1m[94m65[0m [1m[94m|[0m         type_map: &mut specta::TypeMap,
+   [1m[94m|[0m         [1m[33m^^^^^^^^[0m [1m[33mhelp: if this is intentional, prefix it with an underscore: `_type_map`[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mnote[0m: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused variable: `generics`[0m
+  [1m[94m--> [0mtauri/src/ipc.rs:66:9
+   [1m[94m|[0m
+[1m[94m66[0m [1m[94m|[0m         generics: specta::Generics,
+   [1m[94m|[0m         [1m[33m^^^^^^^^[0m [1m[33mhelp: if this is intentional, prefix it with an underscore: `_generics`[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused variable: `app_handle`[0m
+ [1m[94m--> [0mtauri/src/setup.rs:5:9
+  [1m[94m|[0m
+[1m[94m5[0m [1m[94m|[0m     let app_handle = app.app_handle().clone();
+  [1m[94m|[0m         [1m[33m^^^^^^^^^^[0m [1m[33mhelp: if this is intentional, prefix it with an underscore: `_app_handle`[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unused variable: `shell`[0m
+   [1m[94m--> [0mtauri/src/utils/help.rs:114:9
+    [1m[94m|[0m
+[1m[94m114[0m [1m[94m|[0m     let shell = app.shell();
+    [1m[94m|[0m         [1m[33m^^^^^[0m [1m[33mhelp: if this is intentional, prefix it with an underscore: `_shell`[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+  [1m[94m--> [0mtauri/src/utils/resolve.rs:61:5
+   [1m[94m|[0m
+[1m[94m61[0m [1m[94m|[0m     unsafe {
+   [1m[94m|[0m     [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mnote[0m: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+  [1m[94m--> [0mtauri/src/utils/resolve.rs:71:9
+   [1m[94m|[0m
+[1m[94m71[0m [1m[94m|[0m         unsafe {
+   [1m[94m|[0m         [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+  [1m[94m--> [0mtauri/src/utils/dock.rs:13:9
+   [1m[94m|[0m
+[1m[94m13[0m [1m[94m|[0m         unsafe {
+   [1m[94m|[0m         [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+  [1m[94m--> [0mtauri/src/window.rs:68:9
+   [1m[94m|[0m
+[1m[94m68[0m [1m[94m|[0m         unsafe {
+   [1m[94m|[0m         [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+  [1m[94m--> [0mtauri/src/window.rs:78:13
+   [1m[94m|[0m
+[1m[94m78[0m [1m[94m|[0m             unsafe {
+   [1m[94m|[0m             [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:138:17
+    [1m[94m|[0m
+[1m[94m138[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowShouldClose(sender) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:144:17
+    [1m[94m|[0m
+[1m[94m144[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowWillClose(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:151:17
+    [1m[94m|[0m
+[1m[94m151[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidResize(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:157:17
+    [1m[94m|[0m
+[1m[94m157[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidMove(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:164:17
+    [1m[94m|[0m
+[1m[94m164[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidChangeBackingProperties(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:170:17
+    [1m[94m|[0m
+[1m[94m170[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidBecomeKey(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:176:17
+    [1m[94m|[0m
+[1m[94m176[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidResignKey(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:182:17
+    [1m[94m|[0m
+[1m[94m182[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.window_willUseFullScreenPresentationOptions(window, options) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:191:17
+    [1m[94m|[0m
+[1m[94m191[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidEnterFullScreen(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:199:17
+    [1m[94m|[0m
+[1m[94m199[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowWillEnterFullScreen(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:208:17
+    [1m[94m|[0m
+[1m[94m208[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowWillExitFullScreen(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:218:17
+    [1m[94m|[0m
+[1m[94m218[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidExitFullScreen(notification) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:224:17
+    [1m[94m|[0m
+[1m[94m224[0m [1m[94m|[0m                 unsafe { self.ivars().super_class.windowDidFailToEnterFullScreen(window) }
+    [1m[94m|[0m                 [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m[1m: unnecessary `unsafe` block[0m
+   [1m[94m--> [0mtauri/src/window.rs:234:39
+    [1m[94m|[0m
+[1m[94m234[0m [1m[94m|[0m                 .with_ns_window(|win| unsafe { win.delegate().expect("failed to get delegate") });
+    [1m[94m|[0m                                       [1m[33m^^^^^^[0m [1m[33munnecessary `unsafe` block[0m
+
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1mSome errors have detailed explanations: E0282, E0432.[0m
+[1mFor more information about an error, try `rustc --explain E0282`.[0m
+[1m[96m    Building[0m [=====================> ] 1108/1110: clash-nyanpasu              [K[1m[33mwarning[0m: `clash-nyanpasu` (lib) generated 35 warnings
+[1m[91merror[0m: could not compile `clash-nyanpasu` (lib) due to 3 previous errors; 35 warnings emitted
