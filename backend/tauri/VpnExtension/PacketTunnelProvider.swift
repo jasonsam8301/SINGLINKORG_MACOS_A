@@ -5,8 +5,7 @@
 import NetworkExtension
 import os.log
 
-// TODO: 在 Xcode 中添加 Tun2socks framework 后取消注释
-// @import Tun2socks;
+import Tun2socks
 
 /// Packet Tunnel Provider - 将系统流量转发到 Clash
 /// 使用 Tun2socks 实现 TUN ↔ SOCKS5 桥接
@@ -19,8 +18,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         category: "VPN"
     )
     
-    // TODO: 集成 Tun2socks 后添加
-    // private var tun2socksDevice: Tun2socksRemoteDevice?
+    private var tun2socksDevice: Tun2socksRemoteDevice?
     
     private let packetQueue = DispatchQueue(
         label: "moe.elaina.clash.nyanpasu.vpn.packets",
@@ -71,25 +69,27 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         logger.info("   - IPv6 全局路由: ::/0")
         logger.info("   - DNS 服务器: 1.1.1.1, 8.8.8.8")
         
-        // 3. TODO: 集成 Tun2socks 后启用
-        // 连接到本地 Clash SOCKS5
-        // try await connectToClash(host: clashHost, port: clashPort)
+        // 3. 连接到本地 Clash SOCKS5
+        try await connectToClash(host: clashHost, port: clashPort)
         
         // 4. 开始读取数据包
         logger.info("📦 启动数据包处理...")
         startPacketReading()
         
         logger.info("🎉 VPN 隧道启动成功！")
-        logger.info("💡 提示: 当前使用占位实现，集成 Tun2socks 后将实现真实流量转发")
+        logger.info("✅ 所有流量现在通过 Clash 代理转发")
     }
     
     /// 停止 VPN 隧道
     override func stopTunnel(with reason: NEProviderStopReason) async {
         logger.info("🛑 停止 VPN 隧道，原因: \(reason.rawValue)")
         
-        // TODO: 集成 Tun2socks 后添加
-        // tun2socksDevice?.close()
-        // tun2socksDevice = nil
+        // 关闭 Tun2socks
+        if let device = tun2socksDevice {
+            device.close()
+            tun2socksDevice = nil
+            logger.info("✅ Tun2socks 已关闭")
+        }
         
         logger.info("✅ VPN 隧道已停止")
     }
@@ -155,19 +155,27 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         }
     }
     
-    /// 读取数据包的递归函数
+    /// 读取数据包的递归函数（转发到 Tun2socks）
     private func readPackets() {
         packetFlow.readPackets { [weak self] packets, protocols in
             guard let self = self else { return }
             
+            guard let device = self.tun2socksDevice else {
+                // 如果 Tun2socks 未连接，继续读取但不处理
+                self.packetQueue.async {
+                    self.readPackets()
+                }
+                return
+            }
+            
             if !packets.isEmpty {
-                self.logger.debug("📦 收到 \(packets.count) 个数据包")
+                self.logger.debug("📦 收到 \(packets.count) 个数据包，转发到 Clash")
                 
-                // TODO: 集成 Tun2socks 后实现真实转发
-                // for packet in packets {
-                //     var n: Int = 0
-                //     self.tun2socksDevice?.write(packet, ret0_: &n, error: nil)
-                // }
+                // 转发所有数据包到 Tun2socks（会转发到 Clash）
+                for packet in packets {
+                    var bytesWritten: Int = 0
+                    device.write(packet, ret0_: &bytesWritten, error: nil)
+                }
             }
             
             // 继续读取下一批
@@ -192,12 +200,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }
 }
 
-// MARK: - TODO: Tun2socks 集成
-
-/*
-集成 Tun2socks 后的完整实现：
-
-import Tun2socks
+// MARK: - Tun2socks 集成
 
 extension PacketTunnelProvider: Tun2socksTunWriter {
     
@@ -205,17 +208,19 @@ extension PacketTunnelProvider: Tun2socksTunWriter {
     private func connectToClash(host: String, port: Int) async throws {
         logger.info("🔗 连接到 Clash SOCKS5...")
         
+        // 创建 Tun2socks 客户端配置
         let clientConfig = Tun2socksClientConfig()
         clientConfig.socksServerHost = host
         clientConfig.socksServerPort = Int32(port)
         
+        // 连接到远程设备（本地 Clash）
         let result = Tun2socksConnectRemoteDevice(clientConfig)
         
         guard let device = result.device, result.error == nil else {
             let errorMsg = result.error?.error ?? "未知错误"
             logger.error("❌ 连接失败: \(errorMsg)")
             throw NSError(domain: "VPN", code: 2, userInfo: [
-                NSLocalizedDescriptionKey: "无法连接到 Clash: \(errorMsg)"
+                NSLocalizedDescriptionKey: "无法连接到 Clash: \(errorMsg)\n请确保 Clash Nyanpasu 正在运行"
             ])
         }
         
@@ -227,11 +232,12 @@ extension PacketTunnelProvider: Tun2socksTunWriter {
         if let error = relayError {
             logger.error("❌ 流量转发启动失败: \(error.error)")
             throw NSError(domain: "VPN", code: 3, userInfo: [
-                NSLocalizedDescriptionKey: "流量转发失败"
+                NSLocalizedDescriptionKey: "流量转发失败: \(error.error)"
             ])
         }
         
-        logger.info("✅ Tun2socks 流量转发已启动")
+        logger.info("✅ Tun2socks 双向转发已启动")
+        logger.info("   TUN 数据包 → SOCKS5 → Clash (::\(port))")
     }
     
     /// Tun2socksTunWriter 协议实现 - 将数据包写回系统
@@ -241,29 +247,8 @@ extension PacketTunnelProvider: Tun2socksTunWriter {
         return true
     }
     
-    /// 读取数据包并转发到 Tun2socks（真实实现）
-    private func readPackets() {
-        packetFlow.readPackets { [weak self] packets, protocols in
-            guard let self = self,
-                  let device = self.tun2socksDevice else {
-                self?.packetQueue.async {
-                    self?.readPackets()
-                }
-                return
-            }
-            
-            // 将数据包写入 Tun2socks（会转发到 Clash）
-            for packet in packets {
-                var bytesWritten: Int = 0
-                device.write(packet, ret0_: &bytesWritten, error: nil)
-            }
-            
-            // 继续读取
-            self.packetQueue.async {
-                self.readPackets()
-            }
-        }
+    func close() -> Bool {
+        return true
     }
 }
-*/
 

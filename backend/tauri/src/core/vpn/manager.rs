@@ -122,88 +122,88 @@ impl VpnManager {
     
     /// 确保 Clash 核心正在运行
     async fn ensure_clash_running(&self) -> Result<()> {
-        // TODO: 使用 Nyanpasu 的 ClashCore API
-        // 当前占位实现
-        tracing::info!("✅ Clash 核心检查通过（占位实现）");
-        Ok(())
+        use super::super::clash::ClashCore;
         
-        /* 真实实现（等集成后启用）:
+        // 检查 Clash 是否运行
         if !ClashCore::is_running() {
             tracing::info!("⚠️ Clash 未运行，正在启动...");
-            ClashCore::start().await?;
+            
+            // 启动 Clash
+            ClashCore::global().run_core().await?;
             
             // 等待 Clash 就绪
-            tokio::time::sleep(std::time::Duration::from_secs(2)).await;
-            
-            // 验证端口
-            self.verify_clash_port(7890)?;
+            tokio::time::sleep(std::time::Duration::from_secs(3)).await;
         }
+        
+        // 验证 SOCKS5 端口可用
+        verify_clash_port(7890)?;
+        
+        tracing::info!("✅ Clash 核心已就绪");
         Ok(())
-        */
     }
     
     /// 从 Clash 配置获取 VPN 所需信息
     fn get_clash_config(&self) -> Result<VpnConfig> {
-        // TODO: 从 Nyanpasu Config 读取
-        // 当前返回默认配置
-        
-        Ok(VpnConfig {
-            clash_host: "127.0.0.1".to_string(),
-            clash_port: 7890,  // Clash SOCKS5 默认端口
-            node_name: "GLOBAL".to_string(),
-        })
-        
-        /* 真实实现（等集成后启用）:
         let clash_config = Config::clash().data();
         
         // 读取 SOCKS5 端口
         let port = clash_config
             .get("socks-port")
             .and_then(|v| v.as_u64())
-            .unwrap_or(7890) as u16;
+            .unwrap_or_else(|| {
+                // 降级到 mixed-port
+                clash_config.get_mixed_port() as u64
+            }) as u16;
         
-        // 读取当前节点
-        let node = ClashCore::get_current_proxy()
+        tracing::info!("📝 读取 Clash 配置:");
+        tracing::info!("   SOCKS5 端口: {}", port);
+        
+        // 获取当前节点（从 Clash API）
+        let node_name = self.get_current_node_name()
             .unwrap_or("GLOBAL".to_string());
         
         Ok(VpnConfig {
             clash_host: "127.0.0.1".to_string(),
             clash_port: port,
-            node_name: node,
+            node_name,
         })
-        */
+    }
+    
+    /// 获取当前选中的节点名称
+    fn get_current_node_name(&self) -> Option<String> {
+        // TODO: 从 Clash API 查询当前代理
+        // 当前返回配置中的信息
+        Some("当前节点".to_string())
     }
     
     /// 处理与 TUN 模式的冲突
     async fn handle_tun_conflict(&self) -> Result<()> {
-        // TODO: 检查 TUN 是否启用
-        // 如果启用，自动关闭
+        use crate::config::Config;
         
-        tracing::info!("✅ TUN 模式检查通过（占位实现）");
-        Ok(())
-        
-        /* 真实实现（等集成后启用）:
-        let tun_enabled = Config::verge()
-            .latest()
-            .enable_tun_mode
-            .unwrap_or(false);
+        // 检查 TUN 是否启用
+        let tun_enabled = {
+            let verge = Config::verge().latest();
+            verge.enable_tun_mode.unwrap_or(false)
+        };
         
         if tun_enabled {
-            tracing::warn!("⚠️ 检测到 TUN 模式，自动关闭...");
+            tracing::warn!("⚠️ 检测到 TUN 模式已启用");
+            tracing::info!("📝 VPN 扩展将接管流量，建议关闭 TUN 模式");
             
-            // 关闭 TUN 模式
+            // 自动关闭 TUN 模式
             let mut verge = Config::verge().latest().clone();
             verge.enable_tun_mode = Some(false);
             Config::verge().patch(verge).await?;
             
-            // 重启 Clash（应用配置）
-            ClashCore::restart().await?;
+            tracing::info!("✅ TUN 模式已自动关闭");
             
-            tracing::info!("✅ TUN 模式已关闭");
+            // 等待配置生效
+            tokio::time::sleep(std::time::Duration::from_secs(1)).await;
+        } else {
+            tracing::info!("✅ TUN 模式未启用，无冲突");
         }
         
         Ok(())
-        */
     }
     
     /// 安装 VPN 配置到系统
