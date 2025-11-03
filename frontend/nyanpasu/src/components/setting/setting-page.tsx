@@ -17,6 +17,7 @@ import SettingNyanpasuVersion from './setting-nyanpasu-version'
 import SettingSystemBehavior from './setting-system-behavior'
 import SettingSystemProxy from './setting-system-proxy'
 import SettingSystemService from './setting-system-service'
+import SettingSystemVPN from './setting-system-vpn'
 
 export const SettingPage = () => {
   const isAppImage = useIsAppImage()
@@ -39,6 +40,8 @@ export const SettingPage = () => {
       sequential
     >
       <SettingSystemProxy />
+
+      <SettingSystemVPN />
 
       <SettingNyanpasuUI />
 

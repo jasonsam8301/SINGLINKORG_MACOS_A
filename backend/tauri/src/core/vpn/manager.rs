@@ -1,0 +1,283 @@
+// manager.rs
+// Copyright 2025 SingLink Team
+// VPN 扩展管理器 - 控制 macOS Network Extension
+
+use anyhow::{Result, anyhow};
+use serde::{Deserialize, Serialize};
+use std::process::Command;
+use std::sync::Arc;
+use parking_lot::Mutex;
+use once_cell::sync::OnceCell;
+
+use crate::config::Config;
+use crate::core::clash::ClashCore;
+
+/// VPN 配置
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct VpnConfig {
+    pub clash_host: String,
+    pub clash_port: u16,
+    pub node_name: String,
+}
+
+/// VPN 状态
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum VpnConnectionStatus {
+    Disconnected,
+    Connecting,
+    Connected,
+    Disconnecting,
+    Invalid,
+}
+
+/// VPN 管理器（单例）
+pub struct VpnManager {
+    /// 当前配置
+    config: Arc<Mutex<Option<VpnConfig>>>,
+    /// 连接状态
+    status: Arc<Mutex<VpnConnectionStatus>>,
+    /// 是否已安装配置
+    installed: Arc<Mutex<bool>>,
+}
+
+impl VpnManager {
+    /// 获取全局单例
+    pub fn global() -> &'static VpnManager {
+        static INSTANCE: OnceCell<VpnManager> = OnceCell::new();
+        
+        INSTANCE.get_or_init(|| {
+            tracing::info!("🔧 初始化 VPN 管理器");
+            
+            VpnManager {
+                config: Arc::new(Mutex::new(None)),
+                status: Arc::new(Mutex::new(VpnConnectionStatus::Disconnected)),
+                installed: Arc::new(Mutex::new(false)),
+            }
+        })
+    }
+    
+    /// 启用 VPN 扩展
+    pub async fn enable(&self) -> Result<()> {
+        tracing::info!("🚀 启用 VPN 扩展...");
+        
+        // 步骤 1: 确保 Clash 核心正在运行
+        self.ensure_clash_running().await?;
+        
+        // 步骤 2: 获取 Clash 配置
+        let config = self.get_clash_config()?;
+        
+        tracing::info!("📝 VPN 配置:");
+        tracing::info!("   Clash: {}:{}", config.clash_host, config.clash_port);
+        tracing::info!("   节点: {}", config.node_name);
+        
+        // 步骤 3: 检查并处理 TUN 模式冲突
+        self.handle_tun_conflict().await?;
+        
+        // 步骤 4: 安装或更新 VPN 配置
+        if !*self.installed.lock() {
+            tracing::info!("📥 首次使用，安装 VPN 配置...");
+            self.install_vpn_config(&config).await?;
+            *self.installed.lock() = true;
+        } else {
+            tracing::info!("🔄 更新 VPN 配置...");
+            self.update_vpn_config(&config).await?;
+        }
+        
+        // 步骤 5: 启动 VPN
+        tracing::info!("🔗 启动 VPN 隧道...");
+        self.start_vpn().await?;
+        
+        // 步骤 6: 更新状态
+        *self.config.lock() = Some(config);
+        *self.status.lock() = VpnConnectionStatus::Connected;
+        
+        tracing::info!("✅ VPN 扩展已启用");
+        Ok(())
+    }
+    
+    /// 禁用 VPN 扩展
+    pub async fn disable(&self) -> Result<()> {
+        tracing::info!("🛑 禁用 VPN 扩展...");
+        
+        *self.status.lock() = VpnConnectionStatus::Disconnecting;
+        
+        // 停止 VPN
+        self.stop_vpn().await?;
+        
+        *self.status.lock() = VpnConnectionStatus::Disconnected;
+        
+        tracing::info!("✅ VPN 扩展已禁用");
+        
+        // 注意：不关闭 Clash 核心，保持其他功能可用
+        Ok(())
+    }
+    
+    /// 获取当前状态
+    pub fn get_status(&self) -> VpnConnectionStatus {
+        *self.status.lock()
+    }
+    
+    // MARK: - Private Methods
+    
+    /// 确保 Clash 核心正在运行
+    async fn ensure_clash_running(&self) -> Result<()> {
+        // TODO: 使用 Nyanpasu 的 ClashCore API
+        // 当前占位实现
+        tracing::info!("✅ Clash 核心检查通过（占位实现）");
+        Ok(())
+        
+        /* 真实实现（等集成后启用）:
+        if !ClashCore::is_running() {
+            tracing::info!("⚠️ Clash 未运行，正在启动...");
+            ClashCore::start().await?;
+            
+            // 等待 Clash 就绪
+            tokio::time::sleep(std::time::Duration::from_secs(2)).await;
+            
+            // 验证端口
+            self.verify_clash_port(7890)?;
+        }
+        Ok(())
+        */
+    }
+    
+    /// 从 Clash 配置获取 VPN 所需信息
+    fn get_clash_config(&self) -> Result<VpnConfig> {
+        // TODO: 从 Nyanpasu Config 读取
+        // 当前返回默认配置
+        
+        Ok(VpnConfig {
+            clash_host: "127.0.0.1".to_string(),
+            clash_port: 7890,  // Clash SOCKS5 默认端口
+            node_name: "GLOBAL".to_string(),
+        })
+        
+        /* 真实实现（等集成后启用）:
+        let clash_config = Config::clash().data();
+        
+        // 读取 SOCKS5 端口
+        let port = clash_config
+            .get("socks-port")
+            .and_then(|v| v.as_u64())
+            .unwrap_or(7890) as u16;
+        
+        // 读取当前节点
+        let node = ClashCore::get_current_proxy()
+            .unwrap_or("GLOBAL".to_string());
+        
+        Ok(VpnConfig {
+            clash_host: "127.0.0.1".to_string(),
+            clash_port: port,
+            node_name: node,
+        })
+        */
+    }
+    
+    /// 处理与 TUN 模式的冲突
+    async fn handle_tun_conflict(&self) -> Result<()> {
+        // TODO: 检查 TUN 是否启用
+        // 如果启用，自动关闭
+        
+        tracing::info!("✅ TUN 模式检查通过（占位实现）");
+        Ok(())
+        
+        /* 真实实现（等集成后启用）:
+        let tun_enabled = Config::verge()
+            .latest()
+            .enable_tun_mode
+            .unwrap_or(false);
+        
+        if tun_enabled {
+            tracing::warn!("⚠️ 检测到 TUN 模式，自动关闭...");
+            
+            // 关闭 TUN 模式
+            let mut verge = Config::verge().latest().clone();
+            verge.enable_tun_mode = Some(false);
+            Config::verge().patch(verge).await?;
+            
+            // 重启 Clash（应用配置）
+            ClashCore::restart().await?;
+            
+            tracing::info!("✅ TUN 模式已关闭");
+        }
+        
+        Ok(())
+        */
+    }
+    
+    /// 安装 VPN 配置到系统
+    async fn install_vpn_config(&self, config: &VpnConfig) -> Result<()> {
+        tracing::info!("📥 安装 VPN 配置到系统...");
+        
+        // TODO: 调用 Swift Helper 或使用 Objective-C bridge
+        // 创建 NETunnelProviderManager
+        
+        self.call_vpn_helper("install", config).await?;
+        
+        tracing::info!("✅ VPN 配置已安装");
+        tracing::info!("💡 VPN 配置现在出现在: 系统设置 > 网络 > VPN");
+        
+        Ok(())
+    }
+    
+    /// 更新 VPN 配置
+    async fn update_vpn_config(&self, config: &VpnConfig) -> Result<()> {
+        tracing::info!("🔄 更新 VPN 配置...");
+        
+        self.call_vpn_helper("update", config).await?;
+        
+        tracing::info!("✅ VPN 配置已更新");
+        Ok(())
+    }
+    
+    /// 启动 VPN 隧道
+    async fn start_vpn(&self) -> Result<()> {
+        self.call_vpn_helper("start", &()).await?;
+        Ok(())
+    }
+    
+    /// 停止 VPN 隧道
+    async fn stop_vpn(&self) -> Result<()> {
+        self.call_vpn_helper("stop", &()).await?;
+        Ok(())
+    }
+    
+    /// 调用 VPN Helper（临时实现，后续会替换为真实的 Swift 调用）
+    async fn call_vpn_helper<T: Serialize>(&self, action: &str, _config: &T) -> Result<()> {
+        tracing::info!("🔧 VPN Helper: {}", action);
+        
+        // TODO: 实现真实的 Swift bridge
+        // 方案：使用 AppleScript 或编译一个 Swift helper 工具
+        
+        tracing::warn!("⚠️ 占位实现：VPN Helper 调用（需要后续集成）");
+        
+        Ok(())
+    }
+}
+
+// MARK: - 辅助函数
+
+/// 验证 Clash 端口是否可用
+#[allow(dead_code)]
+fn verify_clash_port(port: u16) -> Result<()> {
+    use std::net::TcpStream;
+    use std::time::Duration;
+    
+    let addr = format!("127.0.0.1:{}", port);
+    
+    match TcpStream::connect_timeout(
+        &addr.parse().unwrap(),
+        Duration::from_secs(2)
+    ) {
+        Ok(_) => {
+            tracing::info!("✅ Clash 端口 {} 可用", port);
+            Ok(())
+        }
+        Err(e) => {
+            tracing::error!("❌ Clash 端口 {} 不可用: {}", port, e);
+            Err(anyhow!("Clash 端口不可用，请确保 Clash 正在运行"))
+        }
+    }
+}
+

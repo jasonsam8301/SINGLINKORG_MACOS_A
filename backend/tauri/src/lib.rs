@@ -274,6 +274,10 @@ pub fn run() -> std::io::Result<()> {
             ipc::get_clash_ws_connections_state,
             // updater layer
             ipc::check_update,
+            // vpn extension (macOS only)
+            core::vpn::vpn_extension_toggle,
+            core::vpn::vpn_extension_status,
+            core::vpn::vpn_extension_refresh,
         ])
         .events(collect_events![core::clash::ClashConnectionsEvent]);
 
