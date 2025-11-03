@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		238AD9DD09B414A53383EA1A /* SOCKS5Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C4046E4CD4C7AA0BC9BCC /* SOCKS5Client.swift */; };
 		468D10A5F19BA7AE66FFD77F /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B7A5D238B6AD9AB614A6C6 /* PacketTunnelProvider.swift */; };
-		57C0F75F76ED1A038F8637B5 /* Tun2socks.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E47225A2916AC33B8A6E467 /* Tun2socks.xcframework */; };
 		9E5F669F2694B84A050D7AE8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F742A43F3134BDE67DC4F0AA /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F6C4046E4CD4C7AA0BC9BCC /* SOCKS5Client.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SOCKS5Client.swift; path = VpnExtension/SOCKS5Client.swift; sourceTree = "<group>"; };
 		4E47225A2916AC33B8A6E467 /* Tun2socks.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = Tun2socks.xcframework; sourceTree = "<group>"; };
 		D79612F37CE720A8E4E2B634 /* VpnExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VpnExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B7A5D238B6AD9AB614A6C6 /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PacketTunnelProvider.swift; path = VpnExtension/PacketTunnelProvider.swift; sourceTree = "<group>"; };
@@ -25,7 +26,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E5F669F2694B84A050D7AE8 /* Cocoa.framework in Frameworks */,
-				57C0F75F76ED1A038F8637B5 /* Tun2socks.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				E2B7A5D238B6AD9AB614A6C6 /* PacketTunnelProvider.swift */,
+				1F6C4046E4CD4C7AA0BC9BCC /* SOCKS5Client.swift */,
 			);
 			name = VpnExtension;
 			sourceTree = "<group>";
@@ -145,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				468D10A5F19BA7AE66FFD77F /* PacketTunnelProvider.swift in Sources */,
+				238AD9DD09B414A53383EA1A /* SOCKS5Client.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
