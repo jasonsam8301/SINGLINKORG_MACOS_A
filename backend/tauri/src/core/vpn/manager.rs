@@ -243,14 +243,51 @@ impl VpnManager {
         Ok(())
     }
     
-    /// 调用 VPN Helper（临时实现，后续会替换为真实的 Swift 调用）
-    async fn call_vpn_helper<T: Serialize>(&self, action: &str, _config: &T) -> Result<()> {
-        tracing::info!("🔧 VPN Helper: {}", action);
+    /// 调用 VPN Helper
+    async fn call_vpn_helper<T: Serialize>(&self, action: &str, config: &T) -> Result<()> {
+        use tokio::process::Command;
+        use tokio::io::AsyncWriteExt;
         
-        // TODO: 实现真实的 Swift bridge
-        // 方案：使用 AppleScript 或编译一个 Swift helper 工具
+        tracing::info!("🔧 调用 VPN Helper: {}", action);
         
-        tracing::warn!("⚠️ 占位实现：VPN Helper 调用（需要后续集成）");
+        // VPN Helper 工具路径（与 Tauri 应用打包在一起）
+        let helper_path = std::env::current_exe()?
+            .parent()
+            .ok_or_else(|| anyhow!("无法获取应用目录"))?
+            .join("vpn-helper");
+        
+        if !helper_path.exists() {
+            return Err(anyhow!("VPN Helper 工具不存在: {:?}", helper_path));
+        }
+        
+        // 准备配置 JSON
+        let config_json = serde_json::to_string(config)?;
+        
+        // 执行 helper
+        let mut child = Command::new(&helper_path)
+            .arg(action)
+            .stdin(std::process::Stdio::piped())
+            .stdout(std::process::Stdio::piped())
+            .stderr(std::process::Stdio::piped())
+            .spawn()?;
+        
+        // 写入配置到 stdin
+        if let Some(mut stdin) = child.stdin.take() {
+            stdin.write_all(config_json.as_bytes()).await?;
+            drop(stdin);  // 关闭 stdin
+        }
+        
+        // 等待完成
+        let output = child.wait_with_output().await?;
+        
+        if !output.status.success() {
+            let stderr = String::from_utf8_lossy(&output.stderr);
+            tracing::error!("❌ VPN Helper 失败: {}", stderr);
+            return Err(anyhow!("VPN Helper 操作失败: {}", stderr));
+        }
+        
+        let stdout = String::from_utf8_lossy(&output.stdout);
+        tracing::info!("✅ VPN Helper 成功: {}", stdout);
         
         Ok(())
     }

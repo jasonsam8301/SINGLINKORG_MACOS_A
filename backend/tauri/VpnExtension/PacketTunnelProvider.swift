@@ -5,7 +5,11 @@
 import NetworkExtension
 import os.log
 
+// TODO: 在 Xcode 中添加 Tun2socks framework 后取消注释
+// @import Tun2socks;
+
 /// Packet Tunnel Provider - 将系统流量转发到 Clash
+/// 使用 Tun2socks 实现 TUN ↔ SOCKS5 桥接
 class PacketTunnelProvider: NEPacketTunnelProvider {
     
     // MARK: - Properties
