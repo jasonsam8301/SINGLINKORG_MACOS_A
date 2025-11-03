@@ -729,7 +729,7 @@ export const commands = {
     }
   },
   /**
-   * 切换 VPN 扩展开关
+   * 切换 VPN 扩展开关（带详细日志）
    */
   async vpnExtensionToggle(enable: boolean): Promise<Result<null, string>> {
     try {

@@ -9,6 +9,9 @@ pub mod manager;
 pub mod commands;
 
 #[cfg(target_os = "macos")]
+pub mod helper;
+
+#[cfg(target_os = "macos")]
 pub use manager::VpnManager;
 
 #[cfg(target_os = "macos")]

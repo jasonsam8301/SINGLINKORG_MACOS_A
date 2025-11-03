@@ -4,12 +4,14 @@
 
 use anyhow::{Result, anyhow};
 use serde::{Deserialize, Serialize};
-use std::process::Command;
 use std::sync::Arc;
 use parking_lot::Mutex;
 use once_cell::sync::OnceCell;
 
 use crate::config::Config;
+
+#[cfg(target_os = "macos")]
+use super::helper;
 
 /// VPN 配置
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -179,14 +181,11 @@ impl VpnManager {
     
     /// 安装 VPN 配置到系统
     async fn install_vpn_config(&self, config: &VpnConfig) -> Result<()> {
-        tracing::info!("📥 安装 VPN 配置到系统...");
+        tracing::info!("📥 [进度 60%] 安装 VPN 配置到系统...");
         
-        // TODO: 调用 Swift Helper 或使用 Objective-C bridge
-        // 创建 NETunnelProviderManager
+        helper::install_vpn(&config.node_name, &config.clash_host, config.clash_port).await?;
         
-        self.call_vpn_helper("install", config).await?;
-        
-        tracing::info!("✅ VPN 配置已安装");
+        tracing::info!("✅ [进度 70%] VPN 配置已安装");
         tracing::info!("💡 VPN 配置现在出现在: 系统设置 > 网络 > VPN");
         
         Ok(())
@@ -194,23 +193,37 @@ impl VpnManager {
     
     /// 更新 VPN 配置
     async fn update_vpn_config(&self, config: &VpnConfig) -> Result<()> {
-        tracing::info!("🔄 更新 VPN 配置...");
+        tracing::info!("🔄 [进度 65%] 更新 VPN 配置...");
         
-        self.call_vpn_helper("update", config).await?;
+        helper::install_vpn(&config.node_name, &config.clash_host, config.clash_port).await?;
         
-        tracing::info!("✅ VPN 配置已更新");
+        tracing::info!("✅ [进度 75%] VPN 配置已更新");
         Ok(())
     }
     
     /// 启动 VPN 隧道
     async fn start_vpn(&self) -> Result<()> {
-        self.call_vpn_helper("start", &()).await?;
+        tracing::info!("🚀 [进度 80%] 启动 VPN 隧道...");
+        
+        let config = self.config.lock();
+        if let Some(cfg) = config.as_ref() {
+            helper::start_vpn(&cfg.node_name).await?;
+            tracing::info!("✅ [进度 90%] VPN 已启动");
+        }
+        
         Ok(())
     }
     
     /// 停止 VPN 隧道
     async fn stop_vpn(&self) -> Result<()> {
-        self.call_vpn_helper("stop", &()).await?;
+        tracing::info!("🛑 [进度 20%] 停止 VPN...");
+        
+        let config = self.config.lock();
+        if let Some(cfg) = config.as_ref() {
+            helper::stop_vpn(&cfg.node_name).await?;
+            tracing::info!("✅ [进度 100%] VPN 已停止");
+        }
+        
         Ok(())
     }
     

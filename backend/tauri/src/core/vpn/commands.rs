@@ -20,31 +20,53 @@ pub struct VpnExtensionStatus {
     pub clash_port: Option<u16>,
 }
 
-/// 切换 VPN 扩展开关
+/// 切换 VPN 扩展开关（带详细日志）
 #[tauri::command(async)]
 #[specta::specta]
 pub async fn vpn_extension_toggle(enable: bool) -> Result<(), String> {
-    tracing::info!("🎛️ VPN 扩展开关: {}", if enable { "开启" } else { "关闭" });
+    tracing::info!("╔═══════════════════════════════════════╗");
+    tracing::info!("║  VPN 扩展操作: {}  ║", if enable { "启用" } else { "禁用" });
+    tracing::info!("╚═══════════════════════════════════════╝");
     
     let manager = VpnManager::global();
     
     if enable {
-        manager.enable()
-            .await
-            .map_err(|e| {
-                tracing::error!("❌ 启用 VPN 失败: {}", e);
-                format!("启用 VPN 失败: {}", e)
-            })?;
+        tracing::info!("[步骤 1/5] 开始启用VPN扩展...");
+        
+        match manager.enable().await {
+            Ok(_) => {
+                tracing::info!("╔═══════════════════════════════════════╗");
+                tracing::info!("║   ✅ VPN 扩展启用成功！   ║");
+                tracing::info!("╚═══════════════════════════════════════╝");
+                Ok(())
+            }
+            Err(e) => {
+                tracing::error!("╔═══════════════════════════════════════╗");
+                tracing::error!("║   ❌ VPN 扩展启用失败   ║");
+                tracing::error!("╚═══════════════════════════════════════╝");
+                tracing::error!("错误详情: {:?}", e);
+                tracing::error!("错误位置: {}", e);
+                
+                Err(format!(
+                    "启用 VPN 失败:\n\n{}\n\n详细错误已记录到日志文件", 
+                    e
+                ))
+            }
+        }
     } else {
-        manager.disable()
-            .await
-            .map_err(|e| {
-                tracing::error!("❌ 禁用 VPN 失败: {}", e);
-                format!("禁用 VPN 失败: {}", e)
-            })?;
+        tracing::info!("[步骤 1/2] 开始禁用VPN...");
+        
+        match manager.disable().await {
+            Ok(_) => {
+                tracing::info!("✅ VPN 已禁用");
+                Ok(())
+            }
+            Err(e) => {
+                tracing::error!("❌ 禁用失败: {}", e);
+                Err(format!("禁用 VPN 失败: {}", e))
+            }
+        }
     }
-    
-    Ok(())
 }
 
 /// 获取 VPN 扩展状态
